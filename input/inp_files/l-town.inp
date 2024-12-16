@@ -1,0 +1,696 @@
+[TITLE]
+L-TOWN
+L-TOWN (v1.2) was developed by KIOS Research and Innovation Center of Excellence for the BattLeDIM 2020 competition
+
+[JUNCTIONS]
+;ID              	Elev        	Demand      	Pattern         
+ n1              	73.2105     	0.000000    	P-Residential   	;AMR & PRESSURE SENSOR
+ n2              	73.8737     	0.163289    	P-Res-39        	;AMR
+ n3              	73.1782     	0.207940    	P-Res-28        	;AMR
+ n4              	68.2608     	0.000000    	P-Residential   	;AMR & PRESSURE SENSOR
+ n5              	65.5695     	0.240492    	P-Res-50        	;
+ n6              	70.9095     	0.270173    	P-Res-29        	;AMR
+ n7              	75.9175     	0.401189    	P-Res-34        	;AMR
+ n8              	64.4833     	0.316391    	P-Res-37        	;AMR
+ n9              	69.2626     	0.433880    	P-Res-27        	;AMR
+ n10             	74.3469     	0.084897    	P-Res-3         	;AMR
+ n11             	63.0588     	0.510632    	P-Res-46        	;AMR
+ n12             	68.2274     	0.053655    	P-Res-42        	;
+ n13             	61.9901     	0.212606    	P-Res-35        	;AMR
+ n14             	68.5805     	0.017585    	P-Res-23        	;
+ n15             	70.9492     	0.209477    	P-Res-35        	;
+ n16             	68.7986     	0.086930    	P-Res-14        	;AMR
+ n17             	60.5935     	0.409368    	P-Res-29        	;AMR
+ n18             	67.1420     	0.067285    	P-Res-42        	;AMR
+ n19             	73.3626     	0.120873    	P-Res-49        	;AMR
+ n20             	65.9549     	0.134341    	P-Res-24        	;AMR
+ n21             	59.6849     	0.055446    	P-Res-46        	;AMR
+ n22             	76.1173     	0.161154    	P-Res-22        	;AMR
+ n23             	64.2052     	0.026564    	P-Res-33        	;AMR
+ n24             	67.8217     	0.046334    	P-Res-40        	;AMR
+ n25             	58.9717     	0.000000    	P-Residential   	;AMR
+ n26             	61.6305     	0.004876    	P-Res-31        	;AMR
+ n27             	65.7763     	0.143682    	P-Res-9         	;AMR
+ n28             	61.4047     	0.000000    	P-Residential   	;AMR
+ n29             	71.5429     	0.049595    	P-Res-33        	;AMR
+ n30             	75.3299     	0.288707    	P-Res-28        	;AMR
+ n31             	65.0059     	0.127181    	P-Res-18        	;AMR & PRESSURE SENSOR
+ n32             	71.1590     	0.079463    	P-Res-40        	;AMR
+ n33             	60.5902     	0.002663    	P-Res-15        	;AMR
+ n34             	65.8482     	0.102941    	P-Res-16        	;AMR
+ n35             	59.6258     	0.000000    	P-Residential   	;AMR
+ n36             	70.1959     	0.268948    	P-Res-18        	;AMR
+ n37             	63.9172     	0.084017    	P-Res-39        	;
+ n38             	58.5794     	0.199139    	P-Res-2         	;
+ n39             	62.9791     	0.015294    	P-Res-49        	;AMR
+ n40             	60.2093     	0.330584    	P-Res-13        	;AMR
+ n41             	69.2961     	0.155279    	P-Res-7         	;AMR
+ n42             	61.0635     	0.231443    	P-Res-7         	;AMR
+ n43             	61.8585     	0.123022    	P-Res-4         	;AMR
+ n44             	66.1177     	0.036312    	P-Res-39        	;AMR
+ n45             	62.5989     	0.275106    	P-Res-24        	;AMR
+ n343            	66.1200     	0.137129    	P-Res-39        	;AMR
+ n344            	74.2800     	0.251005    	P-Res-7         	;AMR
+ n345            	71.2300     	0.047587    	P-Res-38        	;AMR
+ n346            	67.9300     	0.167265    	P-Res-6         	;AMR
+ n347            	73.6617     	0.000000    	P-Residential   	;AMR
+ n348            	74.1128     	0.029242    	P-Res-42        	;
+ n349            	74.5640     	0.056646    	P-Res-7         	;AMR
+ n350            	75.0152     	0.188525    	P-Res-12        	;AMR
+ n351            	75.4663     	0.410137    	P-Res-48        	;AMR
+ n352            	74.1103     	0.123854    	P-Res-10        	;AMR
+ n353            	73.5455     	0.272920    	P-Res-33        	;AMR
+ n354            	73.9127     	0.121719    	P-Res-42        	;AMR
+ n355            	66.4555     	0.400157    	P-Res-16        	;AMR
+ n356            	67.3414     	0.126399    	P-Res-50        	;AMR
+ n357            	69.7450     	0.106454    	P-Res-44        	;AMR
+ n358            	75.9841     	0.525476    	P-Res-9         	;AMR
+ n359            	76.0507     	0.414467    	P-Res-18        	;
+ n360            	64.9738     	0.255969    	P-Res-13        	;AMR
+ n361            	65.4644     	0.121770    	P-Res-27        	;AMR
+ n362            	74.0188     	0.006304    	P-Res-47        	;AMR
+ n363            	73.6907     	0.148637    	P-Res-30        	;
+ n364            	63.4409     	0.090973    	P-Res-34        	;AMR
+ n365            	63.8231     	0.118129    	P-Res-1         	;AMR
+ n366            	61.8702     	0.167437    	P-Res-17        	;AMR
+ n367            	61.7504     	0.045157    	P-Res-37        	;AMR
+ n368            	71.0896     	0.110145    	P-Res-39        	;AMR
+ n369            	60.5924     	0.188557    	P-Res-2         	;AMR
+ n370            	60.5913     	0.038796    	P-Res-3         	;AMR
+ n371            	73.8213     	0.074508    	P-Res-14        	;AMR
+ n372            	65.8656     	0.037437    	P-Res-35        	;AMR
+ n373            	59.6553     	0.028953    	P-Res-24        	;AMR
+ n374            	74.9737     	0.111586    	P-Res-25        	;AMR
+ n375            	73.8301     	0.062449    	P-Res-1         	;AMR
+ n376            	72.6865     	0.124394    	P-Res-36        	;AMR
+ n377            	62.9179     	0.000000    	P-Residential   	;AMR
+ n378            	68.9578     	0.012810    	P-Res-17        	;AMR
+ n379            	70.0939     	0.093268    	P-Res-24        	;AMR
+ n380            	61.2341     	0.153951    	P-Res-18        	;
+ n381            	74.0464     	0.217637    	P-Res-3         	;AMR
+ n382            	72.7629     	0.150652    	P-Res-8         	;AMR
+ n383            	71.4794     	0.083314    	P-Res-37        	;AMR
+ n384            	69.5445     	0.230089    	P-Res-31        	;AMR
+ n385            	66.8891     	0.047992    	P-Res-6         	;AMR
+ n386            	59.3943     	0.266722    	P-Res-48        	;AMR
+ n387            	64.9448     	0.159183    	P-Res-2         	;AMR
+ n388            	63.7718     	0.293851    	P-Res-34        	;AMR
+ n389            	67.0238     	0.166415    	P-Res-20        	;AMR
+
+[RESERVOIRS]
+;ID              	Head        	Pattern         
+ 1               	120         	                	;
+
+[TANKS]
+;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve        	Overflow
+
+[PIPES]
+;ID              	Node1           	Node2           	Length      	Diameter    	Roughness   	MinorLoss   	Status
+ p5              	n3              	n2              	22.9449     	99.3313     	135.4334    	0.0000      	Open  	;
+ p6              	n12             	n14             	30.1371     	98.8566     	135.3667    	0.0000      	Open  	;
+ p7              	n6              	n9              	41.4003     	98.7587     	132.8145    	0.0000      	Open  	;
+ p8              	n22             	n30             	52.7464     	97.7615     	126.8071    	0.0000      	Open  	;
+ p11             	n7              	n10             	66.5107     	97.3473     	139.5835    	0.0000      	Open  	;
+ p12             	n9              	n4              	69.6552     	98.4254     	129.8055    	0.0000      	Open  	;
+ p13             	n31             	n27             	47.1956     	98.3926     	140.5670    	0.0000      	Open  	;
+ p14             	n14             	n16             	34.1128     	97.3671     	127.2020    	0.0000      	Open  	;
+ p15             	n15             	n16             	71.8239     	96.4257     	140.6277    	0.0000      	Open  	;
+ p16             	n16             	n18             	48.4452     	99.7303     	143.1907    	0.0000      	Open  	;
+ p17             	n18             	n20             	55.7652     	99.6666     	148.8725    	0.0000      	Open  	;
+ p18             	n18             	n24             	67.7148     	99.3905     	146.9122    	0.0000      	Open  	;
+ p19             	n21             	n25             	55.9780     	97.0332     	152.7180    	0.0000      	Open  	;
+ p20             	n26             	n28             	30.3681     	97.5929     	130.1522    	0.0000      	Open  	;
+ p21             	n27             	n34             	49.6534     	96.2282     	127.6305    	0.0000      	Open  	;
+ p22             	n28             	n33             	45.5959     	97.3289     	145.6608    	0.0000      	Open  	;
+ p23             	n29             	n32             	18.0466     	96.7171     	127.7884    	0.0000      	Open  	;
+ p24             	n32             	n36             	48.9902     	99.8367     	150.7747    	0.0000      	Open  	;
+ p25             	n33             	n35             	74.0424     	98.8122     	129.6076    	0.0000      	Open  	;
+ p26             	n34             	n37             	62.3158     	96.1578     	151.0853    	0.0000      	Open  	;
+ p27             	n35             	n38             	36.9675     	98.9366     	143.4254    	0.0000      	Open  	;
+ p28             	n36             	n41             	43.2714     	98.5530     	136.0844    	0.0000      	Open  	;
+ p29             	n37             	n45             	64.2555     	96.9798     	134.5752    	0.0000      	Open  	;
+ p30             	n37             	n39             	49.5576     	99.1361     	145.7111    	0.0000      	Open  	;
+ p31             	n40             	n42             	48.4508     	97.7906     	143.8860    	0.0000      	Open  	;
+ p32             	n42             	n43             	43.0884     	99.5139     	148.6303    	0.0000      	Open  	;
+ p33             	n43             	n45             	41.1865     	99.5383     	151.4079    	0.0000      	Open  	;
+ p240            	n343            	n44             	22.8930     	199.6349    	127.7908    	0.0000      	Open  	;
+ p241            	n5              	n8              	52.0384     	99.3726     	130.5862    	0.0000      	Open  	;
+ p242            	n8              	n11             	59.8202     	99.3986     	148.2080    	0.0000      	Open  	;
+ p243            	n11             	n13             	59.1444     	97.2548     	148.7333    	0.0000      	Open  	;
+ p244            	n13             	n17             	72.7797     	98.9601     	137.0693    	0.0000      	Open  	;
+ p245            	n17             	n21             	76.3977     	96.2981     	144.4004    	0.0000      	Open  	;
+ p246            	n10             	n344            	63.0999     	96.9713     	151.6942    	0.0000      	Open  	;
+ p247            	n344            	n15             	62.5078     	96.9341     	128.8472    	0.0000      	Open  	;
+ p248            	n24             	n346            	54.3394     	99.2450     	153.8499    	0.0000      	Open  	;
+ p249            	n345            	n29             	58.3972     	99.4835     	140.8502    	0.0000      	Open  	;
+ p250            	n19             	n345            	61.5630     	96.8218     	136.9646    	0.0000      	Open  	;
+ p251            	n23             	n31             	50.2267     	98.0996     	135.0045    	0.0000      	Open	;
+ p252            	n20             	n23             	63.5198     	97.1273     	138.8522    	0.0000      	Open  	;
+ p253            	n1              	n347            	68.4220     	96.4870     	139.7199    	0.0000      	Open  	;
+ p254            	n347            	n348            	43.4660     	97.9473     	149.0261    	0.0000      	Open  	;
+ p255            	n348            	n349            	52.0524     	97.2314     	126.2318    	0.0000      	Open  	;
+ p256            	n349            	n350            	47.5881     	96.9073     	152.6022    	0.0000      	Open  	;
+ p257            	n350            	n351            	43.4351     	97.2100     	137.5878    	0.0000      	Open  	;
+ p258            	n351            	n7              	55.4789     	99.5691     	135.2418    	0.0000      	Open  	;
+ p259            	n2              	n352            	46.9235     	98.4864     	129.0183    	0.0000      	Open  	;
+ p260            	n352            	n10             	47.4339     	98.0376     	142.5360    	0.0000      	Open  	;
+ p261            	n3              	n353            	45.8682     	99.9289     	148.1426    	0.0000      	Open  	;
+ p262            	n353            	n354            	45.9208     	98.9231     	133.3223    	0.0000      	Open  	;
+ p263            	n354            	n344            	44.5012     	97.3522     	137.4700    	0.0000      	Open  	;
+ p264            	n5              	n355            	60.6241     	98.6133     	151.3986    	0.0000      	Open  	;
+ p265            	n355            	n356            	49.6585     	98.9786     	136.4746    	0.0000      	Open  	;
+ p266            	n356            	n12             	44.3355     	99.6542     	148.8022    	0.0000      	Open  	;
+ p267            	n6              	n357            	45.6697     	99.2088     	144.7885    	0.0000      	Open  	;
+ p268            	n357            	n14             	76.5808     	96.8475     	131.1153    	0.0000      	Open  	;
+ p269            	n7              	n358            	55.9237     	97.2788     	147.9304    	0.0000      	Open  	;
+ p270            	n358            	n359            	54.1497     	98.0694     	150.2749    	0.0000      	Open  	;
+ p271            	n359            	n22             	53.7636     	98.6426     	136.9044    	0.0000      	Open  	;
+ p272            	n8              	n360            	54.9272     	97.0091     	138.3707    	0.0000      	Open  	;
+ p273            	n360            	n361            	54.0100     	98.8281     	127.6486    	0.0000      	Open  	;
+ p274            	n361            	n20             	53.7677     	97.4006     	129.6761    	0.0000      	Open  	;
+ p275            	n10             	n362            	55.4701     	98.3110     	140.6122    	0.0000      	Open  	;
+ p276            	n362            	n363            	42.1897     	96.3114     	148.3512    	0.0000      	Open  	;
+ p277            	n363            	n19             	54.5803     	97.6811     	146.4267    	0.0000      	Open  	;
+ p278            	n11             	n364            	49.0331     	96.8325     	148.7817    	0.0000      	Open  	;
+ p279            	n364            	n365            	46.7975     	97.3262     	137.9082    	0.0000      	Open  	;
+ p280            	n365            	n23             	50.5888     	96.3584     	131.4751    	0.0000      	Open  	;
+ p281            	n13             	n366            	47.3630     	99.1307     	135.5251    	0.0000      	Open  	;
+ p282            	n366            	n367            	44.9645     	99.8272     	135.0490    	0.0000      	Open  	;
+ p283            	n367            	n26             	48.7589     	97.5720     	137.7454    	0.0000      	Open  	;
+ p284            	n15             	n368            	42.4713     	96.2934     	139.4001    	0.0000      	Open  	;
+ p285            	n368            	n345            	39.4375     	96.1206     	152.3167    	0.0000      	Open  	;
+ p286            	n17             	n369            	42.2926     	97.3046     	150.0864    	0.0000      	Open  	;
+ p287            	n369            	n370            	43.2586     	96.6529     	139.7475    	0.0000      	Open  	;
+ p288            	n370            	n33             	42.9889     	97.8951     	144.9570    	0.0000      	Open  	;
+ p289            	n19             	n371            	45.4292     	99.2217     	153.6168    	0.0000      	Open  	;
+ p290            	n371            	n344            	43.8238     	97.9494     	132.6753    	0.0000      	Open  	;
+ p291            	n20             	n372            	53.6346     	99.6568     	141.0655    	0.0000      	Open  	;
+ p292            	n372            	n27             	29.8741     	99.9641     	135.7633    	0.0000      	Open  	;
+ p293            	n21             	n373            	58.6485     	96.8817     	134.2689    	0.0000      	Open  	;
+ p294            	n373            	n35             	57.6676     	99.7036     	142.4012    	0.0000      	Open  	;
+ p295            	n22             	n374            	44.3099     	97.5562     	152.3313    	0.0000      	Open  	;
+ p296            	n374            	n375            	45.3021     	96.0220     	127.5250    	0.0000      	Open  	;
+ p297            	n375            	n376            	47.1728     	97.7982     	140.3514    	0.0000      	Open  	;
+ p298            	n376            	n29             	43.8609     	99.4908     	140.6332    	0.0000      	Open  	;
+ p299            	n23             	n377            	37.9878     	99.4735     	126.6187    	0.0000      	Open  	;
+ p300            	n377            	n26             	38.9377     	97.7549     	136.3113    	0.0000      	Open  	;
+ p301            	n24             	n378            	43.1322     	98.4728     	150.2422    	0.0000      	Open  	;
+ p302            	n378            	n379            	42.7814     	98.1114     	136.8366    	0.0000      	Open  	;
+ p303            	n379            	n345            	42.8387     	97.0098     	127.1636    	0.0000      	Open  	;
+ p304            	n28             	n380            	52.7413     	96.5516     	140.5920    	0.0000      	Open  	;
+ p305            	n380            	n42             	49.4783     	99.2927     	142.9408    	0.0000      	Open  	;
+ p306            	n30             	n381            	50.8169     	98.8275     	151.6498    	0.0000      	Open  	;
+ p307            	n381            	n382            	47.6784     	96.0677     	136.7979    	0.0000      	Open  	;
+ p308            	n382            	n383            	49.2164     	97.4603     	127.9146    	0.0000      	Open  	;
+ p309            	n383            	n36             	47.1808     	96.2558     	136.9319    	0.0000      	Open  	;
+ p310            	n32             	n384            	52.6987     	96.0544     	153.7338    	0.0000      	Open  	;
+ p311            	n384            	n346            	54.4324     	99.3542     	128.5596    	0.0000      	Open  	;
+ p312            	n34             	n385            	36.8643     	96.2766     	132.1128    	0.0000      	Open  	;
+ p313            	n385            	n346            	35.9672     	97.7888     	131.3205    	0.0000      	Open  	;
+ p314            	n38             	n386            	59.2766     	97.1996     	147.4306    	0.0000      	Open  	;
+ p315            	n386            	n40             	59.6509     	96.9082     	136.7453    	0.0000      	Open  	;
+ p316            	n44             	n387            	46.8772     	199.3394    	128.9249    	0.0000      	Open  	;
+ p317            	n387            	n388            	49.2693     	194.9009    	143.3793    	0.0000      	Open  	;
+ p318            	n388            	n45             	46.6347     	198.3948    	133.9897    	0.0000      	Open  	;
+ p319            	n44             	n389            	42.7653     	96.4120     	148.8264    	0.0000      	Open  	;
+ p320            	n389            	n346            	43.3097     	98.4077     	148.7257    	0.0000      	Open  	;
+ 1                  1	            	n343               	28          	200         	140         	0           	Open  	;
+
+[PUMPS]
+;ID              	Node1           	Node2           	Parameters
+
+[VALVES]
+;ID              	Node1           	Node2           	Diameter    	Type	Setting     	MinorLoss   
+
+[TAGS]
+
+[DEMANDS]
+;Junction        	Demand      	Pattern         	Category
+ n1              	0.000000    	P-Residential   	;                 
+ n1              	0.000000    	P-Commercial    	;                 
+ n1              	0.631141    	P-Indutr-1      	;  
+ n2              	0.163289    	P-Res-39        	;                 
+ n2              	0.000000    	P-Commercial    	;                 
+ n2              	0.000000    	P-Industrial    	;  
+ n3              	0.207940    	P-Res-28        	;                 
+ n3              	0.000000    	P-Commercial    	;                 
+ n3              	0.000000    	P-Industrial    	;  
+ n4              	0.000000    	P-Residential   	;                 
+ n4              	0.000000    	P-Commercial    	;                 
+ n4              	1.447477    	P-Indutr-2      	;  
+ n5              	0.240492    	P-Res-50        	;                 
+ n5              	0.000000    	P-Commercial    	;                 
+ n5              	0.000000    	P-Industrial    	;  
+ n6              	0.270173    	P-Res-29        	;                 
+ n6              	0.000000    	P-Commercial    	;                 
+ n6              	0.000000    	P-Industrial    	;  
+ n7              	0.401189    	P-Res-34        	;                 
+ n7              	0.000000    	P-Commercial    	;                 
+ n7              	0.000000    	P-Industrial    	;  
+ n8              	0.316391    	P-Res-37        	;                 
+ n8              	0.000000    	P-Commercial    	;                 
+ n8              	0.000000    	P-Industrial    	;  
+ n9              	0.433880    	P-Res-27        	;                 
+ n9              	0.000000    	P-Commercial    	;                 
+ n9              	0.000000    	P-Industrial    	;  
+ n10             	0.084897    	P-Res-3         	;                 
+ n10             	0.000000    	P-Commercial    	;                 
+ n10             	0.000000    	P-Industrial    	;  
+ n11             	0.510632    	P-Res-46        	;                 
+ n11             	0.000000    	P-Commercial    	;                 
+ n11             	0.000000    	P-Industrial    	;  
+ n12             	0.053655    	P-Res-42        	;                 
+ n12             	0.000000    	P-Commercial    	;                 
+ n12             	0.000000    	P-Industrial    	;  
+ n13             	0.212606    	P-Res-35        	;                 
+ n13             	0.000000    	P-Commercial    	;                 
+ n13             	0.000000    	P-Industrial    	;  
+ n14             	0.017585    	P-Res-23        	;                 
+ n14             	0.000000    	P-Commercial    	;                 
+ n14             	0.000000    	P-Industrial    	;  
+ n15             	0.209477    	P-Res-35        	;                 
+ n15             	0.000000    	P-Commercial    	;                 
+ n15             	0.000000    	P-Industrial    	;  
+ n16             	0.086930    	P-Res-14        	;                 
+ n16             	0.000000    	P-Commercial    	;                 
+ n16             	0.000000    	P-Industrial    	;  
+ n17             	0.409368    	P-Res-29        	;                 
+ n17             	0.000000    	P-Commercial    	;                 
+ n17             	0.000000    	P-Industrial    	;  
+ n18             	0.067285    	P-Res-42        	;                 
+ n18             	0.000000    	P-Commercial    	;                 
+ n18             	0.000000    	P-Industrial    	;  
+ n19             	0.120873    	P-Res-49        	;                 
+ n19             	0.000000    	P-Commercial    	;                 
+ n19             	0.000000    	P-Industrial    	;  
+ n20             	0.134341    	P-Res-24        	;                 
+ n20             	0.000000    	P-Commercial    	;                 
+ n20             	0.000000    	P-Industrial    	;  
+ n21             	0.055446    	P-Res-46        	;                 
+ n21             	0.000000    	P-Commercial    	;                 
+ n21             	0.000000    	P-Industrial    	;  
+ n22             	0.161154    	P-Res-22        	;                 
+ n22             	0.000000    	P-Commercial    	;                 
+ n22             	0.000000    	P-Industrial    	;  
+ n23             	0.026564    	P-Res-33        	;                 
+ n23             	0.102022    	P-Com-36        	;                 
+ n23             	0.000000    	P-Industrial    	;  
+ n24             	0.046334    	P-Res-40        	;                 
+ n24             	0.000000    	P-Commercial    	;                 
+ n24             	0.000000    	P-Industrial    	;  
+ n25             	0.000000    	P-Residential   	;                 
+ n25             	0.000000    	P-Commercial    	;                 
+ n25             	1.835892    	P-Indutr-3      	;  
+ n26             	0.004876    	P-Res-31        	;                 
+ n26             	0.023606    	P-Com-45        	;                 
+ n26             	0.000000    	P-Industrial    	;  
+ n27             	0.143682    	P-Res-9         	;                 
+ n27             	0.000000    	P-Commercial    	;                 
+ n27             	0.000000    	P-Industrial    	;  
+ n28             	0.000000    	P-Residential   	;                 
+ n28             	0.363048    	P-Com-24        	;                 
+ n28             	0.000000    	P-Industrial    	;  
+ n29             	0.049595    	P-Res-33        	;                 
+ n29             	0.000000    	P-Commercial    	;                 
+ n29             	0.000000    	P-Industrial    	;  
+ n30             	0.288707    	P-Res-28        	;                 
+ n30             	0.000000    	P-Commercial    	;                 
+ n30             	0.000000    	P-Industrial    	;  
+ n31             	0.127181    	P-Res-18        	;                 
+ n31             	0.000000    	P-Commercial    	;                 
+ n31             	0.000000    	P-Industrial    	;  
+ n32             	0.079463    	P-Res-40        	;                 
+ n32             	0.000000    	P-Commercial    	;                 
+ n32             	0.000000    	P-Industrial    	;  
+ n33             	0.002663    	P-Res-15        	;                 
+ n33             	0.124745    	P-Com-17        	;                 
+ n33             	0.000000    	P-Industrial    	;  
+ n34             	0.102941    	P-Res-16        	;                 
+ n34             	0.000000    	P-Commercial    	;                 
+ n34             	0.000000    	P-Industrial    	;  
+ n35             	0.000000    	P-Residential   	;                 
+ n35             	0.049733    	P-Com-18        	;                 
+ n35             	0.000000    	P-Industrial    	;  
+ n36             	0.268948    	P-Res-18        	;                 
+ n36             	0.000000    	P-Commercial    	;                 
+ n36             	0.000000    	P-Industrial    	;  
+ n37             	0.084017    	P-Res-39        	;                 
+ n37             	0.000000    	P-Commercial    	;                 
+ n37             	0.000000    	P-Industrial    	;  
+ n38             	0.199139    	P-Res-2         	;                 
+ n38             	0.353455    	P-Com-39        	;                 
+ n38             	0.000000    	P-Industrial    	;  
+ n39             	0.015294    	P-Res-49        	;                 
+ n39             	0.000000    	P-Commercial    	;                 
+ n39             	0.000000    	P-Industrial    	;  
+ n40             	0.330584    	P-Res-13        	;                 
+ n40             	0.000000    	P-Commercial    	;                 
+ n40             	0.000000    	P-Industrial    	;  
+ n41             	0.155279    	P-Res-7         	;                 
+ n41             	0.000000    	P-Commercial    	;                 
+ n41             	0.000000    	P-Industrial    	;  
+ n42             	0.231443    	P-Res-7         	;                 
+ n42             	0.000000    	P-Commercial    	;                 
+ n42             	0.000000    	P-Industrial    	;  
+ n43             	0.123022    	P-Res-4         	;                 
+ n43             	0.000000    	P-Commercial    	;                 
+ n43             	0.000000    	P-Industrial    	;  
+ n44             	0.036312    	P-Res-39        	;                 
+ n44             	0.000000    	P-Commercial    	;                 
+ n44             	0.000000    	P-Industrial    	;  
+ n45             	0.275106    	P-Res-24        	;                 
+ n45             	0.000000    	P-Commercial    	;                 
+ n45             	0.000000    	P-Industrial    	;  
+ n343            	0.137129    	P-Res-39        	;                 
+ n343            	0.011672    	P-Com-26        	;                 
+ n343            	0.000000    	P-Industrial    	;  
+ n344            	0.251005    	P-Res-7         	;                 
+ n344            	0.000000    	P-Commercial    	;                 
+ n344            	0.000000    	P-Industrial    	;  
+ n345            	0.047587    	P-Res-38        	;                 
+ n345            	0.000000    	P-Commercial    	;                 
+ n345            	0.000000    	P-Industrial    	;  
+ n346            	0.167265    	P-Res-6         	;                 
+ n346            	0.000000    	P-Commercial    	;                 
+ n346            	0.000000    	P-Industrial    	;  
+ n347            	0.000000    	P-Residential   	;                 
+ n347            	0.000000    	P-Commercial    	;                 
+ n347            	0.036064    	P-Indutr-4      	;  
+ n348            	0.029242    	P-Res-42        	;                 
+ n348            	0.000000    	P-Commercial    	;                 
+ n348            	0.000000    	P-Industrial    	;  
+ n349            	0.056646    	P-Res-7         	;                 
+ n349            	0.000000    	P-Commercial    	;                 
+ n349            	0.000000    	P-Industrial    	;  
+ n350            	0.188525    	P-Res-12        	;                 
+ n350            	0.000000    	P-Commercial    	;                 
+ n350            	0.000000    	P-Industrial    	;  
+ n351            	0.410137    	P-Res-48        	;                 
+ n351            	0.000000    	P-Commercial    	;                 
+ n351            	0.000000    	P-Industrial    	;  
+ n352            	0.123854    	P-Res-10        	;                 
+ n352            	0.000000    	P-Commercial    	;                 
+ n352            	0.000000    	P-Industrial    	;  
+ n353            	0.272920    	P-Res-33        	;                 
+ n353            	0.000000    	P-Commercial    	;                 
+ n353            	0.000000    	P-Industrial    	;  
+ n354            	0.121719    	P-Res-42        	;                 
+ n354            	0.000000    	P-Commercial    	;                 
+ n354            	0.000000    	P-Industrial    	;  
+ n355            	0.400157    	P-Res-16        	;                 
+ n355            	0.000000    	P-Commercial    	;                 
+ n355            	0.000000    	P-Industrial    	;  
+ n356            	0.126399    	P-Res-50        	;                 
+ n356            	0.000000    	P-Commercial    	;                 
+ n356            	0.000000    	P-Industrial    	;  
+ n357            	0.106454    	P-Res-44        	;                 
+ n357            	0.000000    	P-Commercial    	;                 
+ n357            	0.000000    	P-Industrial    	;  
+ n358            	0.525476    	P-Res-9         	;                 
+ n358            	0.000000    	P-Commercial    	;                 
+ n358            	0.000000    	P-Industrial    	;  
+ n359            	0.414467    	P-Res-18        	;                 
+ n359            	0.000000    	P-Commercial    	;                 
+ n359            	0.000000    	P-Industrial    	;  
+ n360            	0.255969    	P-Res-13        	;                 
+ n360            	0.000000    	P-Commercial    	;                 
+ n360            	0.000000    	P-Industrial    	;  
+ n361            	0.121770    	P-Res-27        	;                 
+ n361            	0.000000    	P-Commercial    	;                 
+ n361            	0.000000    	P-Industrial    	;  
+ n362            	0.006304    	P-Res-47        	;                 
+ n362            	0.000000    	P-Commercial    	;                 
+ n362            	0.000000    	P-Industrial    	;  
+ n363            	0.148637    	P-Res-30        	;                 
+ n363            	0.000000    	P-Commercial    	;                 
+ n363            	0.000000    	P-Industrial    	;  
+ n364            	0.090973    	P-Res-34        	;                 
+ n364            	0.000000    	P-Commercial    	;                 
+ n364            	0.000000    	P-Industrial    	;  
+ n365            	0.118129    	P-Res-1         	;                 
+ n365            	0.000000    	P-Commercial    	;                 
+ n365            	0.000000    	P-Industrial    	;  
+ n366            	0.167437    	P-Res-17        	;                 
+ n366            	0.000000    	P-Commercial    	;                 
+ n366            	0.000000    	P-Industrial    	;  
+ n367            	0.045157    	P-Res-37        	;                 
+ n367            	0.085430    	P-Com-8         	;                 
+ n367            	0.000000    	P-Industrial    	;  
+ n368            	0.110145    	P-Res-39        	;                 
+ n368            	0.000000    	P-Commercial    	;                 
+ n368            	0.000000    	P-Industrial    	;  
+ n369            	0.188557    	P-Res-2         	;                 
+ n369            	0.000000    	P-Commercial    	;                 
+ n369            	0.000000    	P-Industrial    	;  
+ n370            	0.038796    	P-Res-3         	;                 
+ n370            	0.240838    	P-Com-27        	;                 
+ n370            	0.000000    	P-Industrial    	;  
+ n371            	0.074508    	P-Res-14        	;                 
+ n371            	0.000000    	P-Commercial    	;                 
+ n371            	0.000000    	P-Industrial    	;  
+ n372            	0.037437    	P-Res-35        	;                 
+ n372            	0.000000    	P-Commercial    	;                 
+ n372            	0.000000    	P-Industrial    	;  
+ n373            	0.028953    	P-Res-24        	;                 
+ n373            	0.000000    	P-Commercial    	;                 
+ n373            	0.000000    	P-Industrial    	;  
+ n374            	0.111586    	P-Res-25        	;                 
+ n374            	0.000000    	P-Commercial    	;                 
+ n374            	0.000000    	P-Industrial    	;  
+ n375            	0.062449    	P-Res-1         	;                 
+ n375            	0.000000    	P-Commercial    	;                 
+ n375            	0.000000    	P-Industrial    	;  
+ n376            	0.124394    	P-Res-36        	;                 
+ n376            	0.000000    	P-Commercial    	;                 
+ n376            	0.000000    	P-Industrial    	;  
+ n377            	0.000000    	P-Residential   	;                 
+ n377            	0.334795    	P-Com-12        	;                 
+ n377            	0.000000    	P-Industrial    	;  
+ n378            	0.012810    	P-Res-17        	;                 
+ n378            	0.000000    	P-Commercial    	;                 
+ n378            	0.000000    	P-Industrial    	;  
+ n379            	0.093268    	P-Res-24        	;                 
+ n379            	0.000000    	P-Commercial    	;                 
+ n379            	0.000000    	P-Industrial    	;  
+ n380            	0.153951    	P-Res-18        	;                 
+ n380            	0.000000    	P-Commercial    	;                 
+ n380            	0.000000    	P-Industrial    	;  
+ n381            	0.217637    	P-Res-3         	;                 
+ n381            	0.000000    	P-Commercial    	;                 
+ n381            	0.000000    	P-Industrial    	;  
+ n382            	0.150652    	P-Res-8         	;                 
+ n382            	0.000000    	P-Commercial    	;                 
+ n382            	0.000000    	P-Industrial    	;  
+ n383            	0.083314    	P-Res-37        	;                 
+ n383            	0.000000    	P-Commercial    	;                 
+ n383            	0.000000    	P-Industrial    	;  
+ n384            	0.230089    	P-Res-31        	;                 
+ n384            	0.000000    	P-Commercial    	;                 
+ n384            	0.000000    	P-Industrial    	;  
+ n385            	0.047992    	P-Res-6         	;                 
+ n385            	0.000000    	P-Commercial    	;                 
+ n385            	0.000000    	P-Industrial    	;  
+ n386            	0.266722    	P-Res-48        	;                 
+ n386            	0.000000    	P-Commercial    	;                 
+ n386            	0.000000    	P-Industrial    	;  
+ n387            	0.159183    	P-Res-2         	;                 
+ n387            	0.000000    	P-Commercial    	;                 
+ n387            	0.000000    	P-Industrial    	;  
+ n388            	0.293851    	P-Res-34        	;                 
+ n388            	0.150364    	P-Com-29        	;                 
+ n388            	0.000000    	P-Industrial    	;  
+ n389            	0.166415    	P-Res-20        	;                 
+ n389            	0.000000    	P-Commercial    	;                 
+ n389            	0.000000    	P-Industrial    	;  
+
+[STATUS]
+;ID              	Status/Setting
+
+[CURVES]
+;ID              	X-Value     	Y-Value
+;PUMP: PUMP:
+ 1               	0.0000      	126.6700    
+ 1               	27.3856     	88.6690     
+ 1               	49.9990     	0.0000      
+
+[CONTROLS]
+
+
+
+[RULES]
+
+
+
+[ENERGY]
+ Global Efficiency  	75.0000
+ Global Price       	0
+ Demand Charge      	0.0000
+
+[EMITTERS]
+;Junction        	Coefficient
+
+[QUALITY]
+;Node            	InitQual
+
+[SOURCES]
+;Node            	Type        	Quality     	Pattern
+
+[REACTIONS]
+;Type     	Pipe/Tank       	Coefficient
+
+
+[REACTIONS]
+ Order Bulk            	1.00
+ Order Tank            	1.00
+ Order Wall            	1
+ Global Bulk           	0.000000
+ Global Wall           	0.000000
+ Limiting Potential    	0
+ Roughness Correlation 	0
+
+[MIXING]
+;Tank            	Model
+
+[TIMES]
+ Duration           	0
+ Hydraulic Timestep 	0:05 
+ Quality Timestep   	0:05 
+ Pattern Timestep   	0:05 
+ Pattern Start      	0:00 
+ Report Timestep    	0:05 
+ Report Start       	0:00 
+ Start ClockTime    	0:00:00
+ Statistic          	NONE
+
+[REPORT]
+ Status             	Full
+ Summary            	No
+ Page               	0
+
+[OPTIONS]
+ Units              	CMH
+ Headloss           	H-W
+ Specific Gravity   	1.000000
+ Viscosity          	1.000000
+ Trials             	50
+ Accuracy           	0.01000000
+ CHECKFREQ          	2
+ MAXCHECK           	10
+ DAMPLIMIT          	0.00000000
+ Unbalanced         	Continue 10
+ Pattern            	1
+ Demand Multiplier  	1.0000
+ Emitter Exponent   	0.5000
+ Quality            	NONE mg/L
+ Diffusivity        	1.000000
+ Tolerance          	0.01000000
+
+[COORDINATES]
+;Node            	X-Coord           	Y-Coord
+n1              	138.220           	1549.640          
+n2              	274.230           	1504.560          
+n3              	271.280           	1480.960          
+n4              	186.620           	1326.650          
+n5              	158.930           	1233.340          
+n6              	261.330           	1361.980          
+n7              	369.970           	1543.260          
+n8              	162.650           	1181.320          
+n9              	256.540           	1318.850          
+n10             	361.450           	1475.420          
+n11             	167.140           	1118.610          
+n12             	271.090           	1281.280          
+n13             	170.680           	1059.780          
+n14             	302.240           	1279.260          
+n15             	344.840           	1347.410          
+n16             	336.370           	1277.060          
+n17             	177.120           	987.980           
+n18             	331.160           	1227.210          
+n19             	439.910           	1391.070          
+n20             	325.780           	1173.230          
+n21             	181.220           	914.670           
+n22             	525.830           	1490.190          
+n23             	314.660           	1113.150          
+n24             	393.300           	1207.500          
+n25             	195.950           	860.160           
+n26             	309.660           	1037.480          
+n27             	378.840           	1136.180          
+n28             	305.940           	1008.070          
+n29             	482.970           	1314.280          
+n30             	575.550           	1471.840          
+n31             	361.510           	1100.770          
+n32             	478.090           	1296.300          
+n33             	300.290           	964.570           
+n34             	423.910           	1120.350          
+n35             	292.400           	892.500           
+n36             	525.890           	1281.280          
+n37             	405.030           	1063.300          
+n38             	288.820           	853.940           
+n39             	389.450           	1016.100          
+n40             	370.290           	938.650           
+n41             	566.530           	1268.510          
+n42             	403.760           	973.450           
+n43             	432.650           	1003.480          
+n44             	526.160           	1162.060          
+n45             	460.340           	1032.960          
+n343            	548.480           	1153.260          
+n344            	353.140           	1409.750          
+n345            	424.850           	1329.870          
+n346            	447.730           	1192.110          
+n347            	135.020           	1617.660          
+n348            	179.230           	1607.010          
+n349            	227.110           	1590.820          
+n350            	275.120           	1576.830          
+n351            	318.710           	1563.110          
+n352            	317.840           	1489.990          
+n353            	263.420           	1433.650          
+n354            	308.000           	1421.640          
+n355            	217.790           	1235.650          
+n356            	265.510           	1239.010          
+n357            	305.240           	1353.420          
+n358            	421.930           	1525.570          
+n359            	473.870           	1507.880          
+n360            	217.030           	1178.620          
+n361            	271.400           	1175.930          
+n362            	413.650           	1457.940          
+n363            	452.680           	1442.270          
+n364            	216.320           	1116.790          
+n365            	265.490           	1114.970          
+n366            	217.010           	1052.350          
+n367            	263.330           	1044.910          
+n368            	384.840           	1338.640          
+n369            	218.180           	980.170           
+n370            	259.230           	972.370           
+n371            	396.530           	1400.410          
+n372            	377.560           	1167.440          
+n373            	236.810           	903.590           
+n374            	515.110           	1446.210          
+n375            	504.400           	1402.240          
+n376            	493.680           	1358.260          
+n377            	312.170           	1075.320          
+n378            	403.810           	1248.290          
+n379            	414.340           	1289.080          
+n380            	354.860           	990.760           
+n381            	563.140           	1424.200          
+n382            	550.730           	1376.560          
+n383            	538.310           	1328.920          
+n384            	462.920           	1244.210          
+n385            	435.830           	1156.230          
+n386            	329.560           	896.300           
+n387            	504.220           	1119.030          
+n388            	482.270           	1075.990          
+n389            	486.950           	1177.090          
+1               	574.045           	1150.469          
+
+[VERTICES]
+;Link            	X-Coord           	Y-Coord
+
+[LABELS]
+;X-Coord             Y-Coord             Label & Anchor Node
+
+[BACKDROP]
+  DIMENSIONS  	0.000             	0.000             	2970.450          	1694.690          
+ UNITS          	Meters
+ FILE           	
+ OFFSET         	0.00            	0.00            
+
+[END]
