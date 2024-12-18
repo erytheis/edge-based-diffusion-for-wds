@@ -373,6 +373,7 @@ def read_wds_data(folder,
     diameter = edge_attributes[:, edge_attr_names.index('diameter')]
     loss_coefficient = get_hydraulic_resistance(length, diameter, roughness)
 
+    # run tests to make sure flowrates and pressures are consistent with H-W equations
     if 'flowrate' in edge_attr_names:
         flowrate_ = edge_attributes[:, edge_attr_names.index('flowrate')]
         flowrate_scaled = torch.sign(flowrate_) * (flowrate_.abs() ** 1.852) * loss_coefficient

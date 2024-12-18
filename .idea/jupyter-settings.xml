@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JupyterPersistentConnectionParameters">
+    <option name="knownRemoteServers">
+      <list>
+        <JupyterConnectionParameters>
+          <option name="authType" value="notebook" />
+          <option name="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
+          <option name="urlString" value="http://127.0.0.1:8888/tree" />
+          <authParams2>
+            <map>
+              <entry key="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
+            </map>
+          </authParams2>
+        </JupyterConnectionParameters>
+        <JupyterConnectionParameters>
+          <option name="authType" value="notebook" />
+          <option name="urlString" value="http://localhost:8888" />
+          <authParams2>
+            <map />
+          </authParams2>
+        </JupyterConnectionParameters>
+      </list>
+    </option>
+    <option name="moduleParameters">
+      <map>
+        <entry key="$PROJECT_DIR$/../GNN_StateEstimation_WDS/.idea/GNN_StateEstimation_WDS.iml">
+          <value>
+            <JupyterConnectionParameters>
+              <option name="managed" value="true" />
+              <option name="sdkHomePath" value="$USER_HOME$/miniconda3/envs/luxingenv/bin/python" />
+            </JupyterConnectionParameters>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GaussianSensorPlacement/.idea/GaussianSensorPlacement.iml">
+          <value>
+            <JupyterConnectionParameters>
+              <option name="authType" value="notebook" />
+              <option name="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
+              <option name="urlString" value="http://127.0.0.1:8888/tree" />
+              <authParams2>
+                <map>
+                  <entry key="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
+                </map>
+              </authParams2>
+            </JupyterConnectionParameters>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../gnn_wds/.idea/gnn_wds.iml">
+          <value>
+            <JupyterConnectionParameters>
+              <option name="managed" value="true" />
+              <option name="sdkHomePath" value="$USER_HOME$/miniconda3/envs/graphenv/bin/python" />
+            </JupyterConnectionParameters>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../graphletAnalysis/.idea/graphletAnalysis.iml">
+          <value>
+            <JupyterConnectionParameters>
+              <option name="managed" value="true" />
+              <option name="sdkHomePath" value="$USER_HOME$/miniconda3/envs/graphenv/bin/python" />
+            </JupyterConnectionParameters>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../pythonProject/.idea/pythonProject.iml">
+          <value>
+            <JupyterConnectionParameters>
+              <option name="managed" value="true" />
+              <option name="sdkHomePath" value="$USER_HOME$/miniconda3/envs/graphenv38/bin/python" />
+            </JupyterConnectionParameters>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

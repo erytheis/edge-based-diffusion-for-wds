@@ -1,14 +1,6 @@
-
-from typing import List, Optional
-
 import torch
-import torch_geometric
-from torch import scatter_add
 from torch_geometric.graphgym import GCNConv
 from torch_geometric.typing import OptTensor, Tensor, Adj
-
-from src.surrogate_models.torch_models.model.metric import r2_score
-
 
 
 class SimplicialFeaturePropagation(GCNConv):

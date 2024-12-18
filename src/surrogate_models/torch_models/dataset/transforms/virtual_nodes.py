@@ -378,7 +378,7 @@ class VirtualReservoirNode(VirtualNode):
 class VirtualReservoirConnections(VirtualNode):
     """
 
-    Add a virtual node that connects all reservoir nodes
+    Add a virtual node that connects pairs of reservoirs according to their indexation
     """
 
     def __init__(self, columns: Optional[List[str]] = None,

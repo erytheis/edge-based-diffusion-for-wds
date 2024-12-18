@@ -13,8 +13,8 @@ from src.surrogate_models.torch_models.data.simplex import SimplexData
 
 class ComplexData(SimplexData):
     """
-    Extends the torch_geometric.data.Data class to include a simplex attribute.
-    At the moment is only limited to  2-simplex.
+    Extends the torch_geometric.data.Data class to include a complex.
+    At the moment is only limited to  2-complexes.
     """
 
     def __init__(self, x: OptTensor = None,
@@ -22,41 +22,46 @@ class ComplexData(SimplexData):
                  edge_attr: OptTensor = None,
                  y: OptTensor = None,
                  pos: OptTensor = None,
-                 up_laplacian_weight: OptTensor = None,
-                 up_laplacian_index: OptTensor = None,
+                 upper_laplacian_weight: OptTensor = None,
+                 upper_laplacian_index: OptTensor = None,
                  **kwargs):
         super().__init__(x, edge_index, edge_attr, y, pos, **kwargs)
 
-        setattr(self._store, 'up_laplacian_weight', up_laplacian_weight)
-        setattr(self._store, 'up_laplacian_index', up_laplacian_index)
+        setattr(self._store, 'upper_laplacian_weight', upper_laplacian_weight)
+        setattr(self._store, 'upper_laplacian_index', upper_laplacian_index)
 
     @property
-    def laplacian_index_up(self):
-        return self['up_laplacian_index'] if 'up_laplacian_index' in self._store else None
+    def upper_laplacian_index(self):
+        return self['upper_laplacian_index'] if 'upper_laplacian_index' in self._store else None
 
     @property
-    def laplacian_weight_up(self):
-        return self['up_laplacian_weight'] if 'up_laplacian_weight' in self._store else None
+    def upper_laplacian_weight(self):
+        return self['upper_laplacian_weight'] if 'upper_laplacian_weight' in self._store else None
 
 @profile
-def get_L_up(data, normalized=False):
+def get_upper_boundary_and_laplacian(data, normalized=False):
+    """
+    Compute the upper Laplacian (L1_up) for a given ComplexData graph.
+
+    Parameters
+    ----------
+    data : ComplexData
+        The input graph data containing `edge_index`.
+    normalized : bool, optional
+        If True, compute the normalized upward Laplacian. Default is False.
+
+    Returns
+    -------
+    Tuple[sp.sparse.spmatrix, sp.sparse.spmatrix]
+        A tuple (L1_up, B2) where:
+        L1_up : sp.sparse.spmatrix
+            The upward Laplacian matrix.
+        B2 : sp.sparse.spmatrix
+            The boundary matrix from edges to cycles.
+    """
+
     edges = list(data.edge_index.t().cpu().numpy())
-
-    st_time = time.time()
-    graph = nx.from_edgelist(data.edge_index.t().cpu().numpy())
-    # # if normalized:
-    # cycles = nx.minimum_cycle_basis(graph)
-    # for i, cycle in enumerate(cycles):
-    #     cycle = list(np.array(nx.find_cycle(graph.subgraph(cycle)))[:, 0])
-    #     cycles[i] = cycle
-    # #
     cycles = nx.cycle_basis(nx.from_edgelist(data.edge_index.t().cpu().numpy()))
-
-    end_time = time.time()
-
-    print('time:', end_time - st_time)
-    # cycles = nx.minimum_cycle_basis(nx.from_edgelist(data.edge_index.t().cpu().numpy()))
-    # cycles = nx.chordless_cycles(nx.from_edgelist(data.edge_index.t().cpu().numpy()))
 
     edgelist = [e for e in edges]
 
@@ -103,7 +108,22 @@ def get_L_up(data, normalized=False):
 
     return L1_up, B2
 
-def get_L_up_planar(data, normalized=False):
+def get_upper_boundary_and_laplacian_planar(data, normalized=False):
+    """
+    Compute the upward Laplacian (L1_up) for a planar graph. Returns a minimum cycle basis.
+
+    Parameters
+    ----------
+    data : ComplexData
+        Input graph data.
+    normalized : bool, optional
+        Whether to normalize the Laplacian. Default is False.
+
+    Returns
+    -------
+    Tuple[sp.sparse.spmatrix, sp.sparse.spmatrix]
+        (L1_up, B2) for the planar graph.
+    """
     edges = list(data.edge_index.t().cpu().numpy())
 
     graph = nx.from_edgelist(data.edge_index.t().cpu().numpy())
@@ -148,6 +168,7 @@ def get_L_up_planar(data, normalized=False):
                 ei
             ]
     B2 = A
+
     if normalized:
         # add diagonal matrix with the same size as the number of cycles and length of cycles as entry
         D3 = np.diag([1 / len(c) for c in faces])
@@ -164,24 +185,36 @@ def get_L_up_planar(data, normalized=False):
     return  L1_up, B2
 
 
-def get_L_up_sparse(data, device, iterative_smoothing_coefficient=0.0):
-    L1_up,_ = get_L_up(data)
+def get_upper_laplacian_sparse(data, device):
+    L1_up,_ = get_upper_boundary_and_laplacian(data)
 
-    if iterative_smoothing_coefficient is not None and iterative_smoothing_coefficient > 0.0:
-        L1_up= sp.sparse.identity(L1_up.shape[0], format='csr')- L1_up * iterative_smoothing_coefficient
 
     L1_up = L1_up.tocoo()
 
     values = L1_up.data
     indices = np.vstack((L1_up.row, L1_up.col))
 
-    i = torch.tensor(indices, dtype=torch.long, device=device)
-    v = torch.tensor(values, dtype=torch.float, device=device)
+    upper_laplacian_index = torch.tensor(indices, dtype=torch.long, device=device)
+    upper_laplacian_weight = torch.tensor(values, dtype=torch.float, device=device)
 
-    return i, v
+    return upper_laplacian_index, upper_laplacian_weight
 
 
 def get_faces(graph):
+    """
+    Compute the faces of a planar graph using NetworkX's planar embedding.
+
+    Parameters
+    ----------
+    graph : nx.Graph
+        The input planar graph.
+
+    Returns
+    -------
+    Set[Tuple[Tuple[int, int], ...]]
+        A set of faces, each represented as a tuple of undirected edges.
+    """
+
     is_planar, embedding = nx.check_planarity(graph)
     if not is_planar:
         raise Exception("Graph cannot be made planar")

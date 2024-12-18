@@ -27,27 +27,27 @@ class SimplexData(GraphData):
                  edge_attr: OptTensor = None,
                  y: OptTensor = None,
                  pos: OptTensor = None,
-                 laplacian_weight: OptTensor = None,
-                 laplacian_index: OptTensor = None,
+                 lower_laplacian_weight: OptTensor = None,
+                 lower_laplacian_index: OptTensor = None,
                  boundary_weight: OptTensor = None,
                  boundary_index: OptTensor = None,
                  **kwargs):
         super().__init__(x, edge_index, edge_attr, y, pos, **kwargs)
 
-        setattr(self._store, 'laplacian_weight', laplacian_weight)
-        setattr(self._store, 'laplacian_index', laplacian_index)
+        setattr(self._store, 'lower_laplacian_weight', lower_laplacian_weight)
+        setattr(self._store, 'lower_laplacian_index', lower_laplacian_index)
         setattr(self._store, 'boundary_weight', boundary_weight)
         setattr(self._store, 'boundary_index', boundary_index)
         setattr(self._store, 'edge_y', kwargs.get('edge_y'))
         setattr(self._store, 'node_y', kwargs.get('node_y'))
 
     @property
-    def laplacian_weight(self):
-        return self['laplacian_weight'] if 'laplacian_weight' in self._store else None
+    def lower_laplacian_weight(self):
+        return self['lower_laplacian_weight'] if 'lower_laplacian_weight' in self._store else None
 
     @property
-    def laplacian_index(self):
-        return self['laplacian_index'] if 'laplacian_index' in self._store else None
+    def lower_laplacian_index(self):
+        return self['lower_laplacian_index'] if 'lower_laplacian_index' in self._store else None
 
     @property
     def boundary_weight(self):
@@ -140,49 +140,6 @@ class SimplexData(GraphData):
         mask = self[attribute][:, column_idx] == value
         return mask
 
-    @profile
-    def drop_node_by_features(self, nodes_column_idx=-1, nodes_value=0, edges_column_idx=-1, edges_value=0):
-        """
-        Drops node corresponding to the value in the x and edge_attr. Drops corresponding edge_index, edge_attr,
-        laplacian_index and weights, boundary_index and weights.
-        Args:
-            nodes_column_idx: (int) column index of the feature to mask
-            nodes_value: (int) value to mask
-            edges_column_idx: (int) column index of the feature to mask
-            edges_value: (int) value to mask
-        """
-        num_edges = len(self['edge_index'][0])
-        num_nodes = len(self['x'])
-
-        nodes_to_keep = self['x'][:, nodes_column_idx] == nodes_value
-        edges_to_keep = self['edge_attr'][:, edges_column_idx] == edges_value
-
-        self['x'] = self['x'][nodes_to_keep]
-        self['edge_attr'] = self['edge_attr'][edges_to_keep]
-        self['edge_index'] = self['edge_index'][:, edges_to_keep]
-        if 'node_y' in self:
-            self['node_y'] = self['node_y'][nodes_to_keep]
-        if 'edge_y' in self:
-            self['edge_y'] = self['edge_y'][edges_to_keep]
-
-            # index sparse tensors
-        L = torch.sparse_coo_tensor(self.laplacian_index, self.laplacian_weight, (num_edges, num_edges))
-        L = L.to_dense()
-        L = L[edges_to_keep][:, edges_to_keep]
-        L = L.to_sparse()
-
-        self['laplacian_index'] = L._indices()
-        self['laplacian_weight'] = L._values()
-
-        # index boundary operators
-        B = torch.sparse_coo_tensor(self.boundary_index, self.boundary_weight,
-                                    (num_nodes, num_edges))
-        B = B.to_dense()[nodes_to_keep][:, edges_to_keep].to_sparse()
-
-        self['boundary_index'] = B._indices()
-        self['boundary_weight'] = B._values()
-
-
 
     def get_adjacency(self, dim: Tuple[int]):
         """
@@ -199,7 +156,7 @@ class SimplexData(GraphData):
             torch.tensor([[0, 1, 1, 2],
             [1, 0, 2, 1]]
         2:
-            >>> data = SimplexData(laplacian_index=torch.tensor([[0, 1, 1, 2],
+            >>> data = SimplexData(lower_laplacian_index=torch.tensor([[0, 1, 1, 2],
             ...                                                   [1, 0, 2, 1]]))
 
             >>> data.get_adjacency((1, 1))
@@ -209,7 +166,7 @@ class SimplexData(GraphData):
         if dim == (0, 0):
             return self['edge_index']
         elif dim == (1, 1):
-            return self['laplacian_index']
+            return self['lower_laplacian_index']
         elif dim == (0, 1):
             return self['boundary_index']
         elif dim == (1, 0):
@@ -230,7 +187,7 @@ class SimplexData(GraphData):
             >>> data.get_weights((0, 0))
             torch.tensor([1, 2, 3, 4]
         2:
-            >>> data = SimplexData(laplacian_weight=torch.tensor([1, 2, 3, 4]))
+            >>> data = SimplexData(lower_laplacian_weight=torch.tensor([1, 2, 3, 4]))
 
             >>> data.get_weights((1, 1))
             torch.tensor([1, 2, 3, 4]
@@ -238,7 +195,7 @@ class SimplexData(GraphData):
         if dim == (0, 0):
             return self['edge_weight']
         elif dim == (1, 1):
-            return self['laplacian_weight']
+            return self['lower_laplacian_weight']
         elif dim == (0, 1):
             return self['boundary_weight']
         elif dim == (1, 0):
@@ -247,28 +204,8 @@ class SimplexData(GraphData):
             raise ValueError(f'Invalid dim: {dim}')
 
 
-def get_boundary_and_laplacian(data: SimplexData, device='cpu'):
-    simplices = [(s.tolist(), 0.0) for s in data.edge_index.T]
-    simplices += [([n], 0.0) for n in range(data.num_nodes)]
 
-    hl = HodgeLaplacians(simplices, mode='gudhi', maxdimension=1)
-    B1 = hl.getBoundaryOperator(1)
-    B1 = scipy.sparse.coo_matrix(B1)
-
-    boundary_index = torch.tensor(np.vstack((B1.row, B1.col)), dtype=torch.long, device=device)
-    boundary_weight = torch.tensor(B1.data, dtype=torch.float, device=device)
-
-    L1 = hl.getHodgeLaplacian(1)
-
-    L1 = scipy.sparse.coo_matrix(L1)
-
-    laplacian_index = torch.tensor(np.vstack((L1.row, L1.col)), dtype=torch.long, device=device)
-    laplacian_weight = torch.tensor(L1.data, dtype=torch.float, device=device)
-
-    return boundary_index, boundary_weight, laplacian_index, laplacian_weight
-
-
-def get_boundary(data: SimplexData, device='cpu', weight_idx=None):
+def get_lower_boundary(data: SimplexData, device='cpu', weight_idx=None):
     ei = data.edge_index
 
     boundary_src = ei.reshape(1, -1).squeeze()
@@ -286,11 +223,11 @@ def get_boundary(data: SimplexData, device='cpu', weight_idx=None):
 
 
 @profile
-def get_boundary_and_laplacian_new(data: SimplexData, normalized=True, remove_self_loops=False, device='cpu',
-                                   iterative_smoothing_coefficient=None,
-                                   release_ends_of_virtual_edges=False,
-                                   weight_idx=None):
-    boundary_index, boundary_weight = get_boundary(data, device, weight_idx)
+def get_lower_boundary_and_laplacian(data: SimplexData, normalized=True, remove_self_loops=False,
+                                     device='cpu',
+                                     release_ends_of_virtual_edges=False,
+                                     weight_idx=None):
+    boundary_index, boundary_weight = get_lower_boundary(data, device, weight_idx)
     #
     B1 = torch.sparse_coo_tensor(boundary_index, boundary_weight, size=(data.num_nodes, data.num_edges))
     # B1 = B1.coalesce()
@@ -306,14 +243,10 @@ def get_boundary_and_laplacian_new(data: SimplexData, normalized=True, remove_se
         eye = sparse_eye(L.shape[0], value=2., device=device)
         L = L - eye.coalesce()
 
-    if iterative_smoothing_coefficient is not None and iterative_smoothing_coefficient > 0.0:
-        L = (sparse_eye(L.shape[0], device=device) - iterative_smoothing_coefficient * L)
+    lower_laplacian_index = L.coalesce().indices()
+    lower_laplacian_weight = L.coalesce().values()
 
-
-    laplacian_index = L.coalesce().indices()
-    laplacian_weight = L.coalesce().values()
-
-    return boundary_index, boundary_weight, laplacian_index, laplacian_weight
+    return boundary_index, boundary_weight, lower_laplacian_index, lower_laplacian_weight
 
 
 @profile
@@ -328,29 +261,6 @@ def get_L_first_option(B1, normalized=True, ):
         L = torch.sparse.mm(B1.T, B1)
 
     L = L.to_sparse()
-    return L
-
-
-@profile
-def get_L_2(B1, ):
-    B1 = B1.to_dense()
-
-    D = torch.diag(1 / torch.sum(torch.abs(B1), dim=1))
-
-    L = torch.einsum('ij,jj,jk->ik', [B1.T, D, B1])
-    L = L.to_sparse()
-    return L
-
-
-def get_L_2_sparse(B1, ):
-    # B1 = B1.to_dense()
-    D = torch.sparse.sum(torch.abs(B1), dim=1)
-    diagonals_values = torch.reciprocal(D.values())
-
-    L = torch.einsum('ij,j,jk->ik', [B1.T, diagonals_values, B1])
-    L = L.to_sparse()
-    # create sparse matrix in scipy
-
     return L
 
 

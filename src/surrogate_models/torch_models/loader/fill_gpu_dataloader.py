@@ -1,17 +1,7 @@
-from typing import Union, List
-
 import torch
-from torch.utils.data._utils.collate import default_collate
-
-from torch_geometric.data import Dataset, Data, HeteroData, Batch
-from torchvision import datasets, transforms
-from collections import abc as container_abcs
 
 from src.surrogate_models.torch_models.base.base_dataloader import Collater
 
-# from line_profiler_pycharm import profile
-
-int_classes = int
 
 
 
