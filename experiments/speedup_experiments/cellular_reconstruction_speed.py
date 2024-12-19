@@ -1,26 +1,25 @@
+import datetime
 import os
 import time
 from os.path import join
 
-import datetime
 import numpy as np
 import pandas as pd
 import torch
-import torch_geometric
-from line_profiler_pycharm import profile
 # from numpy.linalg import weigh
 from matplotlib import pyplot as plt
 from sklearn.metrics import r2_score
 from tqdm import tqdm
 
-import src.surrogate_models.torch_models.loader.dataloaders as loaders
+from src.model.torch_models.model.diffusion_step import DiffusionStep
+from src.model.torch_models.parse_config import ConfigParser
+from src.model.torch_models.runners import load_cli_options, load_args, load_datasets
+from src.model.torch_models.loader import *
 
-from src.surrogate_models.torch_models.model.diffusion_step import DiffusionStep
-from src.surrogate_models.torch_models.parse_config import ConfigParser
-from src.surrogate_models.torch_models.runners import load_cli_options, load_args, load_datasets
-from src.utils.utils import DEFAULT_COLORS
 from src.utils.torch_utils import prepare_device
+from src.utils.utils import DEFAULT_COLORS, PROJECT_ROOT
 
+from definitions import ROOT_DIR
 
 def fetch_best(path_to_logs, num=0):
     logs = pd.read_json(path_to_logs, lines=True)
@@ -47,7 +46,6 @@ def _plot_headloss_and_flowarates(mask):
     plt.show()
 
 
-@profile
 def runtime_fp(y_mask, mu_down, mu_up,
                momentum_down=0.0, momentum_up=0,
                low_iterations=3, up_iterations=1):
@@ -57,13 +55,13 @@ def runtime_fp(y_mask, mu_down, mu_up,
     delta_h = torch.zeros_like(y_mask)
 
     # scatter virtual edges to sparse indices
-    mask_ = virtual[batch.up_laplacian_index[0]].squeeze()
+    mask_ = virtual[batch.upper_laplacian_index[0]].squeeze()
 
-    index = batch.up_laplacian_index[:, ~mask_]
-    weight = batch.up_laplacian_weight[~mask_].clone() * mu_up
+    index = batch.upper_laplacian_index[:, ~mask_]
+    weight = batch.upper_laplacian_weight[~mask_].clone() * mu_up
 
-    index_down = batch.laplacian_index
-    weight_down = batch.laplacian_weight.clone() * mu_down
+    index_down = batch.lower_laplacian_index
+    weight_down = batch.lower_laplacian_weight.clone() * mu_down
 
     for j in tqdm(range(stop_points[-1])):
 
@@ -134,7 +132,7 @@ def runtime_fp(y_mask, mu_down, mu_up,
 
 if __name__ == '__main__':
     reservoirs = torch.tensor(0)
-    config_name = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + '/hodge_laplacian/config_simplex.yaml'
+    config_name = join(PROJECT_ROOT, 'input', 'config_simplex.yaml')
 
     args = load_args(config_name,
                      )
@@ -209,7 +207,7 @@ if __name__ == '__main__':
             else:
                 step = 10* memory_limit / 2
 
-            data_loader = loaders.FillGPULoader(ds, memory_limit=memory_limit, step=step, device=device)
+            data_loader = FillGPULoader(ds, memory_limit=memory_limit, step=step, device=device)
             num_pipes = ds[0].num_edges
 
             for i, batch in enumerate(data_loader):
@@ -252,8 +250,8 @@ if __name__ == '__main__':
                 # get best data
                 if get_best:
                     try:
-                        path_to_logs = join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-                                            'speedup_experiments', 'out', ds_name, 'logs_experiment.log.json')
+                        path_to_logs = join(ROOT_DIR,
+                                            'input', 'optimal_parameters', ds_name, 'logs_experiment.log.json')
                         param_dict, target = fetch_best(path_to_logs)
 
                         print(f'Successfully loaded best config, in {target} iterations')
@@ -275,7 +273,7 @@ if __name__ == '__main__':
                 if known_nodes.sum() > len(batch):
                     # release the end of the network
                     # sparse for FP
-                    L1_down_sparse_indices, L1_down_sparse_values = batch.laplacian_index, batch.laplacian_weight
+                    L1_down_sparse_indices, L1_down_sparse_values = batch.lower_laplacian_index, batch.lower_laplacian_weight
 
                     virtual_reservoir_pipes_sparse_indices = virtual_reservoir_pipes[L1_down_sparse_indices[0]] & \
                                                              virtual_reservoir_pipes[
@@ -284,8 +282,8 @@ if __name__ == '__main__':
                     virtual[virtual_reservoir_pipes] = 0
 
                     L1_down_sparse_values[virtual_reservoir_pipes_sparse_indices] = 1
-                    batch.laplacian_index = L1_down_sparse_indices
-                    batch.laplacian_weight = L1_down_sparse_values
+                    batch.lower_laplacian_index = L1_down_sparse_indices
+                    batch.lower_laplacian_weight = L1_down_sparse_values
 
                     h_known = reservoir_connector * h_real
 

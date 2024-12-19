@@ -20,7 +20,6 @@ from torch_scatter import scatter_add
 from torch_scatter import scatter, segment_csr, gather_csr
 
 from src.utils.utils import Iterator
-from src.surrogate_models.torch_models.visualization.writer.writers import BaseWriter
 
 
 def ensure_dir(dirname):
@@ -65,47 +64,6 @@ def prepare_device(n_gpu_use, device_name='cuda:0'):
     return device, list_ids
 
 
-class MetricTracker:
-    def __init__(self, *keys, writer: Optional[BaseWriter] = None, filterby: Optional[List[str]] = None, validation=False):
-        self.writer = writer
-        self.validation = validation
-        if validation:
-            keys = [f'val/{k}' for k in keys]
-        self._data = pd.DataFrame(index=keys, columns=['total', 'counts', 'average'])
-        self.reset()
-
-    def reset(self):
-        for col in self._data.columns:
-            self._data[col].values[:] = 0
-
-    def update(self, key, value, n=1, log=True):
-        if self.validation:
-            key = f'val/{key}'
-        if self.writer is not None and log:
-            self.writer.log({key: value})
-        # if hasattr(value, "__len__"):
-        #     return
-        self._data.total[key] += value * n
-        self._data.counts[key] += n
-        self._data.average[key] = self._data.total[key] / self._data.counts[key]
-
-    def log(self):
-        if self.writer is not None:
-            self.writer.log(self._data.average.to_dict())
-
-    def update_metrics(self, metrics, log=True):
-        for key, value in metrics.items():
-            self.update(key, value, log=False)
-        if log and self.writer is not None:
-            metrics = {f'val/{k}': v for k, v in metrics.items()}
-            self.writer.log(metrics)
-
-    def avg(self, key):
-        return self._data.average[key]
-
-    def result(self):
-        return dict(self._data.average)
-
 
 def count_parameters(model, print_architecture=False):
     table = PrettyTable(["Modules", "Parameters"])
@@ -121,11 +79,6 @@ def count_parameters(model, print_architecture=False):
     return total_params
 
 
-def fully_adjacent():
-    root_indices = torch.nonzero(roots, as_tuple=False).squeeze(-1)
-    target_roots = root_indices.index_select(dim=0, index=batch)
-    source_nodes = torch.arange(0, data.num_nodes).to(self.device)
-    edges = torch.stack([source_nodes, target_roots], dim=0)
 
 
 def get_symmetrically_normalized_adjacency(edge_index, n_nodes):

@@ -5,16 +5,6 @@
       <list>
         <JupyterConnectionParameters>
           <option name="authType" value="notebook" />
-          <option name="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
-          <option name="urlString" value="http://127.0.0.1:8888/tree" />
-          <authParams2>
-            <map>
-              <entry key="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
-            </map>
-          </authParams2>
-        </JupyterConnectionParameters>
-        <JupyterConnectionParameters>
-          <option name="authType" value="notebook" />
           <option name="urlString" value="http://localhost:8888" />
           <authParams2>
             <map />
@@ -29,20 +19,6 @@
             <JupyterConnectionParameters>
               <option name="managed" value="true" />
               <option name="sdkHomePath" value="$USER_HOME$/miniconda3/envs/luxingenv/bin/python" />
-            </JupyterConnectionParameters>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../GaussianSensorPlacement/.idea/GaussianSensorPlacement.iml">
-          <value>
-            <JupyterConnectionParameters>
-              <option name="authType" value="notebook" />
-              <option name="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
-              <option name="urlString" value="http://127.0.0.1:8888/tree" />
-              <authParams2>
-                <map>
-                  <entry key="token" value="3315f6e1373eb09526a674e8ad99b01f7ac2f70606dc7c30" />
-                </map>
-              </authParams2>
             </JupyterConnectionParameters>
           </value>
         </entry>

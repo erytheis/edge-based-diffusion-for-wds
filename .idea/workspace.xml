@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="58257b43-497b-4752-b5f5-9fc5355d50ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/config_simplex.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_experiment.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_experiment_1.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_experiment_3.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_experiment_5.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_experiment_no_momentum_5.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/l-town/logs_fp.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/torch_models/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/torch_models/model/convergence_criteria.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/torch_models/model/diffusion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/torch_models/visualization/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/edge-based-diffusion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/edge-based-diffusion.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jupyter-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jupyter-settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/config_example.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/input/config_example.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/definitions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/base/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/base/base_dataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/base/base_dataloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/base/base_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/base/base_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/base/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/data/complex.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/complex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/data/simplex.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/simplex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/base_gnn_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/base_gnn_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/edge_flips.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/edge_flips.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/masks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/mutations.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/mutations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/scalings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/scalings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/transforms/virtual_nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/virtual_nodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/dataset/wds_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/wds_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/loader/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/loader/base_dataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/loader/base_dataloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/loader/fill_gpu_dataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/loader/fill_gpu_dataloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/model/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/model/diffusion_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/diffusion_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/model/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/metric.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/model/pressure_reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/pressure_reconstruction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/parse_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/parse_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/runners.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/runners.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/visualization/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/loader/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/surrogate_models/torch_models/visualization/plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/visualization/plotter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/torch/torch_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/torch/torch_utils.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;erytheis&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:erytheis/edge-based-diffusion-for-wds.git&quot;,
+    &quot;accountId&quot;: &quot;f3e1c519-0909-46b2-bb94-8748a12ef89b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2qOc3I1YLNpm1u3zARiFrVW0eQK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.cellular_reconstruction_speed.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bulat/PycharmProjects/edge-based-diffusion/input/optimal_parameters/l-town&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.deploy.options&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/input/optimal_parameters/l-town" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="cellular_reconstruction_speed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="edge-based-diffusion" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="remote_ibmcalc" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/experiments/speedup_experiments" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.cellular_reconstruction_speed" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
+        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58257b43-497b-4752-b5f5-9fc5355d50ea" name="Changes" comment="" />
+      <created>1734536861978</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734536861978</updated>
+      <workItem from="1734536863034" duration="6600000" />
+      <workItem from="1734595019800" duration="8200000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/edge_based_diffusion$cellular_reconstruction_speed.coverage" NAME="cellular_reconstruction_speed Coverage Results" MODIFIED="1734548590841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments/speedup_experiments" />
+  </component>
+</project>

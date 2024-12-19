@@ -1,115 +1,48 @@
-
-# experiment configuration
-name: SimplicialNet
-debug: false
-device: cuda:0
-n_gpu: 1
-
-arch:
-  args:
-    edge:
-      alpha: 0.1
-      conv_kwargs:
-        lin_act: Tanh
-        bias: false
-        type: SimplicialLayer
-      embedding_channels: 10
-      embedding_layers: 2
-      embedding_bias: True
-      act: Tanh
-      hidden_channels: 20
-      in_channels: 3
-      out_channels: 1
-    num_layers: 38
-  type: SimplicialCN
-
 dataset:
   args:
     cache_transformed: true
-    reload_data: false
+    reload_data: true
     skip_features:
-    - flowrate_scaled
+      - flowrate_scaled
   pre_transforms:
-  - args:
-      log: true
-      log_base: 10
-      remove_original: true
-    type: HazenWilliamsWeights
+    - args:
+        remove_original: true
+      type: HazenWilliamsWeights
   subsets:
-  - args:
-      root: saved/simulations/wntr/l-town/experiment_3.2A
-    type: WDSGNNDataset
+
+    - args:
+        root: saved/simulations/wntr/l-town/1_l-town_eps
+      type: WDSGNNDataset
+
   transforms:
-  - args:
-      extend_dimensions: true
-      fully_connected: false
-    type: VirtualSink
-  - args:
-      columns:
-      - flowrate
-    type: RandomFlipEdges
-  - args:
-      normalized: true
-    type: ToSimplexData
-  - args:
-      attribute_key: edge_attr
-      mask_value: 0
-      reference_key: virtual
-      reference_value: 0
-      target_key: flowrate
-    type: Mask
+    - args:
+        columns:
+          - flowrate
+      type: OrderEdges
+    - args:
+        extend_dimensions: true
+        fully_connected: false
+      type: VirtualSink
+    - args:
+        extend_dimensions: true
+        fully_connected: false
+      type: VirtualReservoirConnections
+    - type: ToComplexData
+    - args: { }
+      type: MaskJunctionValues
 
-
-# data loader config
+debug: false
+device: cuda:0
+inspect: false
 loader:
   args:
-    batch_size: 10
+    batch_size: 1
     num_workers: 0
     shuffle: false
-    test_split: 0.1
-    validation_split: 0.1
+    test_split: 0.0
+    validation_split: 0.0
   type: BaseGNNDataLoader
-
-# loss function config
-loss:
-- args:
-    virtual_idx: -1
-    weight: 100
-  type: EdgeMSELoss
-#- args:
-#    p: 1
-#    weight: 0.5
-#  type: HarmonicFlowSmoothingGather
-#- args:
-#    p: 1
-#    weight: 0.1
-#  type: HeadLossNorm
-metrics:
-- mae
-- r2
-
-optimizer:
-  args:
-    lr: 0.003
-  reset: True
-  type: Adam
+n_gpu: 1
+name: Diffusion
 seed: 90342
-trainer:
-  args:
-    cache_clear_period: 50
-    early_stop: 5000
-    epochs: 140000
-#    clip: 0.01
-    monitor: min val/loss
-    plot_period: 500
-#    inverse_transform: True
-    save: true
-    save_dir: saved/training_logs
-    save_period: 500
-    tensorboard: true
-    validation_period: 50
-    verbosity: 2
-    y_dim:
-    - 1
-    - 0
-  type: WDSSimplexTrainer
+
