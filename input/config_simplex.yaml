@@ -9,96 +9,25 @@ dataset:
         remove_original: true
       type: HazenWilliamsWeights
   subsets:
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/marchirural/3_marchirural_
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/marchirural/3_marchirural_
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/net-3/3_net-3_testing
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/asnet2/3_asnet2_
-#    - args:
-#        root: saved/simulations/wntr/mod/3_mod_testing
-#      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/l-town/3_l-town_
-#      type: WDSGNNDataset
-##    - args:
-##        root: saved/simulations/wntr/zj/100_zj_0.01
-##      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/zj/10_zj_
-#      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/kl/3_kl_testing
-#      type: WDSGNNDataset
-
     - args:
         root: saved/simulations/wntr/l-town/1_l-town_eps
       type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/apulia/3_apulia_testing
-#      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/jilin/3_jilin_testing
-#      type: WDSGNNDataset
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/bak/3_bak_
-#    - type: WDSGNNDataset
-#      args:
-#        root: saved/simulations/wntr/pes/3_pes_testing
-#    - args:
-#        root: saved/simulations/wntr/jilin/100_jilin_0.001
-#      type: WDSGNNDatasetdevice
-#    - args:
-#        root: saved/simulations/wntr/apulia/100_apulia_0.001
-#      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/apulia/100_apulia_0.01
-#      type: WDSGNNDataset
-#    - args:
-#        root: saved/simulations/wntr/mod/3_mod_testing
-#      type: WDSGNNDataset
   transforms:
     - args:
         columns:
           - flowrate
       type: OrderEdges
-    #    - args:
-    #        extend_dimensions: true
-    #      type: VirtualReservoirConnector
     - args:
         extend_dimensions: true
         fully_connected: false
-      #        mask_reservoir_values: true
       type: VirtualSink
     - args:
         extend_dimensions: true
         fully_connected: false
-        #        mask_reservoir_values: true
       type: VirtualReservoirConnections
-    #    - args:
-    ##        normalized: true
-    #        iterative_smoothing_coefficient_down: .01
-    #        iterative_smoothing_coefficient_up: 0.0005
     - type: ToComplexData
-    #      args:
-    #        normalized: False
-    #        iterative_smoothing_coefficient_up: 0.083
-    #        iterative_smoothing_coefficient_down: 0.285
-    #      type: ToSimplexData
     - args: { }
       type: MaskJunctionValues
-#    - args:
-#        columns:
-#          - flowrate
-#        value: 10
-#      type: Scale
 debug: false
 device: cuda:0
 inspect: false

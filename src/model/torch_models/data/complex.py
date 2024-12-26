@@ -197,7 +197,7 @@ def get_upper_boundary_and_laplacian_planar(data, normalized=False):
     return  L1_up, B2
 
 
-def get_upper_laplacian_sparse(data, device):
+def get_upper_boundary_and_laplacian_sparse(data, device):
     L1_up, B2 = get_upper_boundary_and_laplacian(data)
 
 

@@ -6,7 +6,6 @@ from line_profiler_pycharm import profile
 from sklearn.metrics import mean_absolute_error
 from torch.nn.functional import l1_loss
 # from torch.ignite.metrics import Metric
-from src.model.torch_models.model.loss import mse_loss
 
 
 def accuracy(output, target, *args, **kwargs):
@@ -50,8 +49,6 @@ def mape(output, target, *args, **kwargs):
         loss = np.average(np.abs(output - target) / np.abs(target), axis=0)
     return loss
 
-def mse(output, target, *args, **kwargs):
-    return mse_loss(output, target)
 
 
 def relative_ae(output, target, base=None, *args, **kwargs):

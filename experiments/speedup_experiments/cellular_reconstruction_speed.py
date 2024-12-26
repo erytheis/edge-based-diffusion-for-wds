@@ -207,7 +207,8 @@ if __name__ == '__main__':
             else:
                 step = 10* memory_limit / 2
 
-            data_loader = FillGPULoader(ds, memory_limit=memory_limit, step=step, device=device)
+            # data_loader = FillGPULoader(ds, memory_limit=memory_limit, step=step, device=device)
+            data_loader = BaseGNNDataLoader(ds,batch_size=1)
             num_pipes = ds[0].num_edges
 
             for i, batch in enumerate(data_loader):

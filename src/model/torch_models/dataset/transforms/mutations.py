@@ -2,7 +2,8 @@ import numpy as np
 from line_profiler_pycharm import profile
 
 import src.model
-from src.model.torch_models.data.complex import get_upper_laplacian_sparse, ComplexData
+from src.model.torch_models.data.complex import get_upper_boundary_and_laplacian, ComplexData, \
+    get_upper_boundary_and_laplacian_sparse
 from src.model.torch_models.data.simplex import get_lower_boundary_and_laplacian, SimplexData
 from src.model.torch_models.dataset.transforms.base import BaseTransform
 
@@ -102,8 +103,8 @@ class ToComplexData(BaseTransform):
                                                               weight_idx=None,
                                                               device=data.x.device)
 
-        L1_up_i, L1_up_v, B2_i, B2_w = get_upper_laplacian_sparse(data, device=data.x.device,
-                                                    )
+        L1_up_i, L1_up_w, B2_i, B2_w = get_upper_boundary_and_laplacian_sparse(data, device=data.x.device,
+                                                                        )
 
         if self.edge_label is not None:
             kwargs['edge_y'] = data.edge_attr[:, self.edge_label_index].clone()
@@ -126,9 +127,9 @@ class ToComplexData(BaseTransform):
                            lower_boundary_weight=B1_w,
                            # upper
                            upper_laplacian_index=L1_up_i,
-                           upper_laplacian_weight=L1_up_v,
+                           upper_laplacian_weight=L1_up_w,
                            upper_boundary_index=B2_i,
-                           upper_boundary_weight=B2_i,
+                           upper_boundary_weight=B2_w,
                            **self.init_kwargs,
                            **kwargs,
                            )

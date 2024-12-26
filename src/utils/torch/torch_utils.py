@@ -303,3 +303,12 @@ def to_undirected(
         return torch_geometric.utils.coalesce(edge_index, edge_attr, num_nodes, reduce, sort_by_row=sort_by_row)
     else:
         return edge_index, edge_attr
+
+def sparse_agg(x, boundary_index, boundary_weight, device=None):
+    #TODO use existing torch.nn.module
+    dim_size = boundary_index[0].max() + 1
+    out = torch.zeros((dim_size, 1), device=device)
+    x_ = x[boundary_index[1]].cpu() * boundary_weight.unsqueeze(-1)
+    out =  scatter(x_, boundary_index[0], out=out, dim_size=dim_size, dim=0)
+    return out
+

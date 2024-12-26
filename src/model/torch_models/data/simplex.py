@@ -29,15 +29,16 @@ class SimplexData(GraphData):
                  pos: OptTensor = None,
                  lower_laplacian_weight: OptTensor = None,
                  lower_laplacian_index: OptTensor = None,
-                 boundary_weight: OptTensor = None,
-                 boundary_index: OptTensor = None,
+1                 lower_boundary_weight: OptTensor = None,
+                 lower_boundary_index: OptTensor = None,
+
                  **kwargs):
         super().__init__(x, edge_index, edge_attr, y, pos, **kwargs)
 
         setattr(self._store, 'lower_laplacian_weight', lower_laplacian_weight)
         setattr(self._store, 'lower_laplacian_index', lower_laplacian_index)
-        setattr(self._store, 'boundary_weight', boundary_weight)
-        setattr(self._store, 'boundary_index', boundary_index)
+        setattr(self._store, 'lower_boundary_weight', lower_boundary_weight)
+        setattr(self._store, 'lower_boundary_index', lower_boundary_index)
         setattr(self._store, 'edge_y', kwargs.get('edge_y'))
         setattr(self._store, 'node_y', kwargs.get('node_y'))
 
@@ -50,12 +51,12 @@ class SimplexData(GraphData):
         return self['lower_laplacian_index'] if 'lower_laplacian_index' in self._store else None
 
     @property
-    def boundary_weight(self):
-        return self['boundary_weight'] if 'boundary_weight' in self._store else None
+    def lower_boundary_weight(self):
+        return self['lower_boundary_weight'] if 'lower_boundary_weight' in self._store else None
 
     @property
-    def boundary_index(self):
-        return self['boundary_index'] if 'boundary_index' in self._store else None
+    def lower_boundary_index(self):
+        return self['lower_boundary_index'] if 'lower_boundary_index' in self._store else None
 
     @property
     def edge_y(self):
@@ -69,9 +70,9 @@ class SimplexData(GraphData):
     def __inc__(self, key: str, value: Any, *args, **kwargs) -> Any:
         if 'batch' in key:
             return int(value.max()) + 1
-        elif 'laplacian_index' in key:
+        elif 'lower_laplacian_index' in key:
             return self.num_edges
-        elif key == 'boundary_index':
+        elif key == 'lower_boundary_index':
             boundary_inc = self.num_nodes
             cell_inc = self.num_edges
             inc = [[boundary_inc], [cell_inc]]

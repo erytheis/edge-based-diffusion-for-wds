@@ -611,3 +611,9 @@ def _format_axes(ax):
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_zlabel("z")
+
+def fetch_best(path_to_logs, num=0):
+    logs = pd.read_json(path_to_logs, lines=True)
+    best = logs.sort_values('target', ascending=False).iloc[num]
+    params = best['params']
+    return params, best['target']
