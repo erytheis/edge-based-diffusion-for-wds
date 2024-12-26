@@ -1,12 +1,7 @@
-import time
-import torch
-import torch.nn as nn
 from torch_geometric.utils import scatter
-from tqdm import tqdm
-from sklearn.metrics import r2_score
 
 
-class ConvergenceCriterion:
+class ConvergenceChecker:
     """Base class for convergence criteria."""
 
     def __init__(self):
@@ -14,6 +9,7 @@ class ConvergenceCriterion:
 
     def __iter__(self):
         self.current_iteration = 0
+        self.converged = False  # Reset convergence state for a new run
         return self
 
     def __next__(self):
@@ -32,25 +28,17 @@ class ConvergenceCriterion:
         pass
 
 
-class StopPointsConvergenceCriterion(ConvergenceCriterion):
+class StopPointsConvergenceChecker(ConvergenceChecker):
     """
     Example criterion that stops at a given set of checkpoints
     and checks scores/deltas to decide if convergence or divergence occurs.
     """
 
-    def __init__(self, stop_points, y, h_real, mask, ds, memory_limit, total_time, st_time, logger=print):
+    def __init__(self, stop_points, logger=print):
         super().__init__()
         self.stop_points = stop_points
-        self.y = y
-        self.h_real = h_real
-        self.mask = mask
-        self.ds = ds
-        self.memory_limit = memory_limit
-        self.total_time = total_time
-        self.st_time = st_time
-        self.logger = logger
         self.converged = False
-        self.diverged = False
+
 
     def __next__(self):
         if self.current_iteration >= self.stop_points[-1] or self.converged or self.diverged:
@@ -70,17 +58,8 @@ class StopPointsConvergenceCriterion(ConvergenceCriterion):
             self.logger('H is Diverging')
             self.diverged = True
 
-        if f is not None and h is not None:
+        # Check convergence
 
-
-            div = (B1_norm @ y_mask)[virtual_nodes].abs().mean()
-
-            rot = (B2_norm_T @ h).abs().mean()
-
-            scatter
-
-            if div < 1e-5 and rot < 1e-2:
-                print('Converged at iteration ', j)
 
 
 
