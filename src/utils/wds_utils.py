@@ -9,7 +9,6 @@ from wntr.graphics import custom_colormap
 from wntr.graphics.network import _format_node_attribute, _format_link_attribute
 import os
 
-
 pretty_names = {'l-town': 'L-TOWN',
                 'net-3': 'NET-3',
                 'zj': 'ZJ',
@@ -24,7 +23,6 @@ pretty_names = {'l-town': 'L-TOWN',
                 'apulia_decreased_demands': 'APULIA',
                 'apulia': 'APULIA',
                 }
-
 
 def get_hydraulic_resistance(length, diameter, roughness):
     # loss_coeffient = 1 / (length / ((roughness ** 1.852) * (diameter ** 4.871))) * 10.667

@@ -1,11 +1,14 @@
 import logging
+import time
 from os.path import join
 
 import numpy as np
 import torch
 
 from src.model.torch_models.loader import BaseGNNDataLoader
-from src.model.torch_models.model.convergence.convergence_checker import StopPointsConvergenceChecker
+from src.model.torch_models.model.convergence.convergence_checker import (
+    StopPointsConvergenceChecker,
+)
 from src.model.torch_models.model.diffusion import Diffusion
 from src.model.torch_models.model.metric import r2_score
 from src.model.torch_models.parse_config import ConfigParser
@@ -37,7 +40,7 @@ if __name__ == "__main__":
     device, device_ids = prepare_device(config["n_gpu"], config["device"])
 
     dataset = load_datasets(config, device=device)
-    data_loader = BaseGNNDataLoader(dataset, 1, device=device)
+    data_loader = BaseGNNDataLoader(dataset, 10000, device=device)
 
     normalized = False
     # reload = 'out/cellular_reconstruction_speed_optimal_experiment.csv'
@@ -57,6 +60,9 @@ if __name__ == "__main__":
 
     torch.no_grad()
 
+    # debug
+    st_time = time.time()
+
     for batch in data_loader:
         path_to_logs = join(
             PROJECT_ROOT,
@@ -65,6 +71,7 @@ if __name__ == "__main__":
             batch.wds_names[0],
             "logs_experiment.log.json",
         )
+
         param_dict, target = fetch_best(path_to_logs)
 
         print(f"Successfully loaded best config, in {target} iterations")
@@ -75,8 +82,17 @@ if __name__ == "__main__":
         tau_down = param_dict["mu_down"]
         tau_up = param_dict["mu_up"]
 
+        st_iteration = time.time()
         f, h = fp(batch, tau_down, tau_up, momentum_down, momentum_up)
+        end_iteration = time.time()
+        print("Time:", end_iteration - st_iteration)
 
-        print(r2_score(f, batch.edge_y.unsqueeze(-1)))
+        h_true = (
+            batch.edge_y.abs() ** 1.852 * batch.edge_y.sign() * batch.edge_attr[:, 1]
+        )
+        print("f:", r2_score(f, batch.edge_y.unsqueeze(-1)))
+        print("h:", r2_score(h, h_true.unsqueeze(-1)))
 
-
+        # debug
+    end_time = time.time()
+    print("Time:", end_time - st_time)

@@ -5,19 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58257b43-497b-4752-b5f5-9fc5355d50ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_condition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_1.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_3.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_5.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_demand_robustness.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_experiment_no_momentum_5.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/optimal_parameters/kl/logs_fp.log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/A.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/edge_properties.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/edge_signal_indicators.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/edge_signals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/figures/head_profile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/figures/node_demand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/figures/node_head.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/node_label_indicators.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/node_properties.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/node_signal_indicators.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/node_signals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/processed_gnn/data.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/processed_gnn/pre_filter.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/processed_gnn/pre_transform.pt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py.pclprof" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/speedup_experiments/cellular_reconstruction_speed.py.pclprof" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/input/config_simplex.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/input/config_simplex.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py.pclprof" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/A.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/edge_properties.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/edge_signal_indicators.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/edge_signals.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/node_label_indicators.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/node_labels.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/node_properties.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/node_signal_indicators.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved/simulations/wntr/l-town/experiment_3.2A/node_signals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/saved/simulations/wntr/kl/2000_kl_/node_labels.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/torch_models/data/complex.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/complex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/torch_models/data/simplex.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/data/simplex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/mutations.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/transforms/mutations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/convergence_criteria.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_checker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/torch_models/dataset/wds_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/dataset/wds_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_checker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_condition.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_condition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/diffusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/diffusion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/divergence_checker.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/torch_models/model/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/torch_models/model/metric.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/torch/torch_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/torch/torch_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/wds_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/wds_utils.py" afterDir="false" />
     </list>
@@ -61,10 +94,12 @@
   "keyToString": {
     "Python.cellular_reconstruction_speed.executor": "Debug",
     "Python.convergence_checker.executor": "Run",
+    "Python.fix_pclprof.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.main_remote.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/bulat/PycharmProjects/edge-based-diffusion",
+    "last_opened_file_path": "/home/bulat/PycharmProjects/edge-based-diffusion/saved/simulations/wntr/l-town",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -72,12 +107,16 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.externalTools",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/saved/simulations/wntr/l-town" />
+      <recent name="$PROJECT_DIR$/input/optimal_parameters/kl" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/saved/simulations/wntr/kl" />
       <recent name="$PROJECT_DIR$/input/optimal_parameters/l-town" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -132,17 +171,56 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="fix_pclprof" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="edge-based-diffusion" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fix_pclprof.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="edge-based-diffusion" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.8 (graphenv38)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_remote" type="PythonConfigurationType" factoryName="Python">
+      <module name="edge-based-diffusion" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="remote_ibmcalc" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -156,6 +234,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.main_remote" />
+      <item itemvalue="Python.fix_pclprof" />
       <item itemvalue="Python.cellular_reconstruction_speed" />
       <item itemvalue="Python.convergence_checker" />
       <item itemvalue="Python.main" />
@@ -163,6 +243,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.fix_pclprof" />
         <item itemvalue="Python.convergence_checker" />
         <item itemvalue="Python.cellular_reconstruction_speed" />
       </list>
@@ -188,12 +269,26 @@
       <workItem from="1734595019800" duration="8708000" />
       <workItem from="1734686853616" duration="13204000" />
       <workItem from="1734702361056" duration="7786000" />
-      <workItem from="1735239471579" duration="349000" />
+      <workItem from="1735239471579" duration="6355000" />
+      <workItem from="1735246152251" duration="127000" />
+      <workItem from="1735297471709" duration="27109000" />
+      <workItem from="1735376410811" duration="12451000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -204,21 +299,23 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_condition.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/src/model/torch_models/model/diffusion.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/model/torch_models/model/convergence/convergence_checker.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/model/torch_models/dataset/wds_dataset.py</url>
+          <line>358</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/edge_based_diffusion$main.coverage" NAME="main Coverage Results" MODIFIED="1734709297533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/edge_based_diffusion$main.coverage" NAME="main Coverage Results" MODIFIED="1735393780036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/edge_based_diffusion$convergence_checker.coverage" NAME="convergence_checker Coverage Results" MODIFIED="1734706490021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model/torch_models/model/convergence" />
+    <SUITE FILE_PATH="coverage/edge_based_diffusion$main_remote.coverage" NAME="main_remote Coverage Results" MODIFIED="1735385189147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/edge_based_diffusion$cellular_reconstruction_speed.coverage" NAME="cellular_reconstruction_speed Coverage Results" MODIFIED="1734706183236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments/speedup_experiments" />
+    <SUITE FILE_PATH="coverage/edge_based_diffusion$fix_pclprof.coverage" NAME="fix_pclprof Coverage Results" MODIFIED="1735328628345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

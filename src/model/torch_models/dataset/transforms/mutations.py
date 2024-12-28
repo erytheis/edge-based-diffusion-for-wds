@@ -93,22 +93,51 @@ class ToComplexData(BaseTransform):
         self.normalized = normalized
         self.remove_self_loops = remove_self_loops
         self.init_kwargs = kwargs
-
+        # An internal cache to store boundary and Laplacian variables
+        self._cache = None
         super().__init__()
 
+    @profile
     def forward(self, data, *args, **kwargs):
-        B1_i, B1_w, L_down_i, L_down_w = get_lower_boundary_and_laplacian(data,
-                                                              self.normalized,
-                                                              self.remove_self_loops,
-                                                              weight_idx=None,
-                                                              device=data.x.device)
 
-        L1_up_i, L1_up_w, B2_i, B2_w = get_upper_boundary_and_laplacian_sparse(data, device=data.x.device,
-                                                                        )
+        if self._cache is None:
+            B1_i, B1_w, L_down_i, L_down_w = get_lower_boundary_and_laplacian(
+                data,
+                self.normalized,
+                self.remove_self_loops,
+                weight_idx=None,
+                device=data.x.device
+            )
+
+            L1_up_i, L1_up_w, B2_i, B2_w = get_upper_boundary_and_laplacian_sparse(
+                data,
+                device=data.x.device,
+            )
+
+            # Store in the cache
+            self._cache = {
+                'B1_i': B1_i,
+                'B1_w': B1_w,
+                'L_down_i': L_down_i,
+                'L_down_w': L_down_w,
+                'L1_up_i': L1_up_i,
+                'L1_up_w': L1_up_w,
+                'B2_i': B2_i,
+                'B2_w': B2_w
+            }
+        else:
+            # Load from cache
+            B1_i = self._cache['B1_i']
+            B1_w = self._cache['B1_w']
+            L_down_i = self._cache['L_down_i']
+            L_down_w = self._cache['L_down_w']
+            L1_up_i = self._cache['L1_up_i']
+            L1_up_w = self._cache['L1_up_w']
+            B2_i = self._cache['B2_i']
+            B2_w = self._cache['B2_w']
 
         if self.edge_label is not None:
             kwargs['edge_y'] = data.edge_attr[:, self.edge_label_index].clone()
-            y = kwargs['edge_y']
 
         if self.node_label is not None:
             kwargs['node_y'] = data.x[:, self.node_label_index].clone()
@@ -130,11 +159,13 @@ class ToComplexData(BaseTransform):
                            upper_laplacian_weight=L1_up_w,
                            upper_boundary_index=B2_i,
                            upper_boundary_weight=B2_w,
+
                            **self.init_kwargs,
                            **kwargs,
                            )
 
     def _infer_parameters(self, data, *args, **kwargs):
-        self.edge_label_index = data.edge_attr_names.index(self.edge_label)
+        if self.edge_label is not None:
+            self.edge_label_index = data.edge_attr_names.index(self.edge_label)
         if self.node_label is not None:
             self.node_label_index = data.x_names.index(self.node_label)

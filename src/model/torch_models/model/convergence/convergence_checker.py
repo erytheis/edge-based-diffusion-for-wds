@@ -1,5 +1,7 @@
 import operator
 
+from line_profiler_pycharm import profile
+
 from src.model.torch_models.model.convergence.convergence_condition import \
     EnergyConservationThreshold, MassConservationThreshold, CompositeCondition
 
@@ -44,8 +46,8 @@ class StopPointsConvergenceChecker(ConvergenceChecker):
         self.converged = False
         self.logger = logger
         # Create two conditions: one for upper and one for lower conservation
-        energy_conservation_condition = EnergyConservationThreshold(threshold=1e-3, norm='mae')
-        mass_conservation_condition = MassConservationThreshold(threshold=1e-4, norm='mae')
+        energy_conservation_condition = EnergyConservationThreshold(threshold=1e-1, norm='mae')
+        mass_conservation_condition = MassConservationThreshold(threshold=1e-3, norm='mae')
 
         # Combine both conditions into a composite condition that requires both to be met
         self.conditions = CompositeCondition(energy_conservation_condition, mass_conservation_condition, operator.and_)
@@ -60,20 +62,23 @@ class StopPointsConvergenceChecker(ConvergenceChecker):
         self.current_iteration += 1
         return iteration
 
-    def update(self,  **kwargs):
-        # Check divergence
-        if kwargs.get('delta_f') is not None and kwargs.get('delta_f').abs().max() > 1e2:
-            self.logger('Flowrate is Diverging')
-            self.diverged = True
+    @profile
+    def update(self, i,  **kwargs):
+        if i in self.stop_points:
 
-        if kwargs.get('delta_h') is not None and kwargs.get('delta_h').abs().max() > 1e1:
-            self.logger('H is Diverging')
-            self.diverged = True
+            # Check divergence
+            if kwargs.get('delta_f') is not None and kwargs.get('delta_f').abs().max() > 1e2:
+                self.logger('Flowrate is Diverging')
+                self.diverged = True
 
-        # Check convergence
-        if not self.conditions.evaluate(**kwargs):
-            # Optional: log which condition failed
-            self.logger(f"Conditions are not met.")
-            return False
-        self.logger(f"All convergence conditions met at iterations {kwargs.get('i')}.")
-        self.converged = True
+            if kwargs.get('delta_h') is not None and kwargs.get('delta_h').abs().max() > 1e1:
+                self.logger('H is Diverging')
+                self.diverged = True
+
+            # Check convergence
+            if not self.conditions.evaluate(**kwargs):
+                # Optional: log which condition failed
+                self.logger(f"Conditions are not met.")
+                return False
+            self.logger(f"All convergence conditions met at iterations {i}.")
+            self.converged = True

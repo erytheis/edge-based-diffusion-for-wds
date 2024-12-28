@@ -1,0 +1,37 @@
+*./pclprof
+
+
+# data
+saved/simulations/*
+
+#Pytorch
+*/*.pyc
+*/*.so*
+*/**/__pycache__
+*/**/*.dylib*
+*/**/*.pyc
+*/**/*.pyd
+*/**/*.so*
+*/**/**/*.pyc
+*/**/**/**/*.pyc
+*/**/**/**/**/*.pyc
+
+
+# IPython notebook checkpoints
+.ipynb_checkpoints
+
+# macOS dir files
+.DS_Store
+
+
+# Virtualenv
+venv/
+
+# Log files
+*.log
+sweep/
+
+# PyCharm files
+.idea
+
+

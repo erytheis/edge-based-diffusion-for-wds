@@ -12,6 +12,7 @@ from itertools import repeat
 from collections import OrderedDict
 
 import torch_geometric
+from line_profiler_pycharm import profile
 from prettytable import PrettyTable
 from torch import Tensor
 from torch_geometric.utils import add_remaining_self_loops
@@ -304,11 +305,13 @@ def to_undirected(
     else:
         return edge_index, edge_attr
 
+@profile
 def sparse_agg(x, boundary_index, boundary_weight, device=None):
     #TODO use existing torch.nn.module
+    device = x.device
     dim_size = boundary_index[0].max() + 1
     out = torch.zeros((dim_size, 1), device=device)
-    x_ = x[boundary_index[1]].cpu() * boundary_weight.unsqueeze(-1)
+    x_ = x[boundary_index[1]] * boundary_weight.unsqueeze(-1)
     out =  scatter(x_, boundary_index[0], out=out, dim_size=dim_size, dim=0)
     return out
 

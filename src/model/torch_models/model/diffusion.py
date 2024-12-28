@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+from line_profiler_pycharm import profile
 from torch import nn
 
 from src.model.torch_models.model.convergence.convergence_checker import (
@@ -21,6 +22,7 @@ class Diffusion(nn.Module):
 
         self.convergence_checker = convergence_checker
 
+    @profile
     def forward(self, batch, tau_down, tau_up, momentum_down, momentum_up, k=3):
 
         device = batch.edge_attr.device
@@ -76,7 +78,7 @@ class Diffusion(nn.Module):
         else:
             h_known = None
 
-        f_true = batch.edge_y.unsqueeze(-1)
+        f_true = batch.edge_attr[:,0].unsqueeze(-1)
 
         # remove reservoir from mask
         mask = virtual.squeeze()
@@ -106,7 +108,7 @@ class Diffusion(nn.Module):
                     f, delta_f, index_down, weight_down, momentum_down, virtual, f_true
                 )
 
-            # Transform to h
+            # transform to h
             h = self._transform_to_h(f, loss_coefficient)
 
             # upper_gradient steps
@@ -165,6 +167,7 @@ class Diffusion(nn.Module):
 
         h_old = h
         h = h - self.fp(h, index, weight) + momentum * delta_h
+
         delta_h = h - h_old
         return h, delta_h
 

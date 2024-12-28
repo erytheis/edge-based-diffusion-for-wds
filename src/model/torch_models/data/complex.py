@@ -1,5 +1,5 @@
-import time
 from itertools import zip_longest
+from typing import Any, Optional
 
 import networkx as nx
 import numpy as np
@@ -17,38 +17,100 @@ class ComplexData(SimplexData):
     At the moment is only limited to  2-complexes.
     """
 
-    def __init__(self, x: OptTensor = None,
-                 edge_index: OptTensor = None,
-                 edge_attr: OptTensor = None,
-                 y: OptTensor = None,
-                 pos: OptTensor = None,
-                 upper_laplacian_weight: OptTensor = None,
-                 upper_laplacian_index: OptTensor = None,
-                 upper_boundary_weight:  OptTensor = None,
-                 upper_boundary_index:   OptTensor = None,
-                 **kwargs):
+    def __init__(
+        self,
+        x: OptTensor = None,
+        edge_index: OptTensor = None,
+        edge_attr: OptTensor = None,
+        y: OptTensor = None,
+        pos: OptTensor = None,
+        upper_laplacian_weight: OptTensor = None,
+        upper_laplacian_index: OptTensor = None,
+        upper_boundary_weight: OptTensor = None,
+        upper_boundary_index: OptTensor = None,
+        **kwargs
+    ):
         super().__init__(x, edge_index, edge_attr, y, pos, **kwargs)
 
-        setattr(self._store, 'upper_laplacian_weight', upper_laplacian_weight)
-        setattr(self._store, 'upper_laplacian_index', upper_laplacian_index)
-        setattr(self._store, 'upper_boundary_weight', upper_boundary_weight)
-        setattr(self._store, 'upper_boundary_index', upper_boundary_index)
+        setattr(self._store, "upper_laplacian_weight", upper_laplacian_weight)
+        setattr(self._store, "upper_laplacian_index", upper_laplacian_index)
+        setattr(self._store, "upper_boundary_weight", upper_boundary_weight)
+        setattr(self._store, "upper_boundary_index", upper_boundary_index)
 
     @property
     def upper_laplacian_index(self):
-        return self['upper_laplacian_index'] if 'upper_laplacian_index' in self._store else None
+        return (
+            self["upper_laplacian_index"]
+            if "upper_laplacian_index" in self._store
+            else None
+        )
 
     @property
     def upper_laplacian_weight(self):
-        return self['upper_laplacian_weight'] if 'upper_laplacian_weight' in self._store else None
+        return (
+            self["upper_laplacian_weight"]
+            if "upper_laplacian_weight" in self._store
+            else None
+        )
 
     @property
     def upper_boundary_index(self):
-        return self['upper_boundary_index'] if 'upper_boundary_index' in self._store else None
+        return (
+            self["upper_boundary_index"]
+            if "upper_boundary_index" in self._store
+            else None
+        )
 
     @property
     def upper_boundary_weight(self):
-        return self['upper_boundary_weight'] if 'upper_boundary_weight' in self._store else None
+        return (
+            self["upper_boundary_weight"]
+            if "upper_boundary_weight" in self._store
+            else None
+        )
+
+    @profile
+    def __inc__(self, key: str, value: Any, *args, **kwargs) -> Any:
+        if "batch" in key:
+            return int(value.max()) + 1
+        elif "laplacian_index" in key:
+            return self.num_edges
+        elif key == "lower_boundary_index":
+            node_inc = self.num_nodes
+            edge_inc = self.num_edges
+            inc = [[node_inc], [edge_inc]]
+            return inc
+        elif key == "upper_boundary_index":
+            cell_inc = self.num_cells
+            edge_inc = self.num_edges
+            inc = [[edge_inc], [cell_inc]]
+            return inc
+        # elif 'boundary_index' in key:
+        #     return self.num_edges
+        elif "index" in key or "face" in key:
+            return self.num_nodes
+        else:
+            return 0
+
+    @property
+    def num_cells(self) -> Optional[int]:
+        r"""Returns the number of nodes in the graph.
+
+        .. note::
+            The number of nodes in the data object is automatically inferred
+            in case node-level attributes are present, *e.g.*, :obj:`data.x`.
+            In some cases, however, a graph may only be given without any
+            node-level attributes.
+            PyG then *guesses* the number of nodes according to
+            :obj:`edge_index.max().item() + 1`.
+            However, in case there exists isolated nodes, this number does not
+            have to be correct which can result in unexpected behaviour.
+            Thus, we recommend to set the number of nodes in your data object
+            explicitly via :obj:`data.num_nodes = ...`.
+            You will be given a warning that requests you to do so.
+        """
+        return int(self.upper_boundary_index[1].max())
+
 
 @profile
 def get_upper_boundary_and_laplacian(data, normalized=False):
@@ -79,16 +141,12 @@ def get_upper_boundary_and_laplacian(data, normalized=False):
 
     A = sp.sparse.lil_matrix((len(edgelist), len(cycles)))
 
-    edge_index = {
-        tuple(edge): i for i, edge in enumerate(edgelist)
-    }  # orient edges
+    edge_index = {tuple(edge): i for i, edge in enumerate(edgelist)}  # orient edges
 
     for celli, cell in enumerate(cycles):
         edge_visiting_dic = {}  # this dictionary is cell dependent
         # mainly used to handle the cell complex non-regular case
-        for edge in list(
-                zip_longest(cell, cell[1:] + [cell[0]])
-        ):
+        for edge in list(zip_longest(cell, cell[1:] + [cell[0]])):
             ei = edge_index[tuple(sorted(edge))]
             if ei not in edge_visiting_dic:
                 if edge in edge_index:
@@ -101,9 +159,7 @@ def get_upper_boundary_and_laplacian(data, normalized=False):
                 else:
                     edge_visiting_dic[ei] = edge_visiting_dic[ei] - 1
 
-            A[ei, celli] = edge_visiting_dic[
-                ei
-            ]
+            A[ei, celli] = edge_visiting_dic[ei]
     B2 = A
 
     if normalized:
@@ -119,6 +175,7 @@ def get_upper_boundary_and_laplacian(data, normalized=False):
         L1_up = (B2 @ B2.T).astype(np.float32)
 
     return L1_up, B2
+
 
 def get_upper_boundary_and_laplacian_planar(data, normalized=False):
     """
@@ -155,9 +212,7 @@ def get_upper_boundary_and_laplacian_planar(data, normalized=False):
 
     A = sp.sparse.lil_matrix((len(edgelist), len(faces)))
 
-    edge_index = {
-        tuple(edge): i for i, edge in enumerate(edgelist)
-    }  # orient edges
+    edge_index = {tuple(edge): i for i, edge in enumerate(edgelist)}  # orient edges
 
     for celli, cell in enumerate(faces):
         edge_visiting_dic = {}  # this dictionary is cell dependent
@@ -176,9 +231,7 @@ def get_upper_boundary_and_laplacian_planar(data, normalized=False):
                 else:
                     edge_visiting_dic[ei] = edge_visiting_dic[ei] - 1
 
-            A[ei, celli] = edge_visiting_dic[
-                ei
-            ]
+            A[ei, celli] = edge_visiting_dic[ei]
     B2 = A
 
     if normalized:
@@ -193,13 +246,11 @@ def get_upper_boundary_and_laplacian_planar(data, normalized=False):
     else:
         L1_up = (B2 @ B2.T).astype(np.float32)
 
-
-    return  L1_up, B2
+    return L1_up, B2
 
 
 def get_upper_boundary_and_laplacian_sparse(data, device):
     L1_up, B2 = get_upper_boundary_and_laplacian(data)
-
 
     L1_up = L1_up.tocoo()
     B2 = B2.tocoo()
@@ -210,10 +261,17 @@ def get_upper_boundary_and_laplacian_sparse(data, device):
     upper_laplacian_index = torch.tensor(indices, dtype=torch.long, device=device)
     upper_laplacian_weight = torch.tensor(values, dtype=torch.float, device=device)
 
-    upper_boundary_index = torch.tensor(np.vstack((B2.row, B2.col)), dtype=torch.long, device=device)
+    upper_boundary_index = torch.tensor(
+        np.vstack((B2.row, B2.col)), dtype=torch.long, device=device
+    )
     upper_boundary_weight = torch.tensor(B2.data, dtype=torch.float, device=device)
 
-    return upper_laplacian_index, upper_laplacian_weight, upper_boundary_index, upper_boundary_weight
+    return (
+        upper_laplacian_index,
+        upper_laplacian_weight,
+        upper_boundary_index,
+        upper_boundary_weight,
+    )
 
 
 def get_faces(graph):

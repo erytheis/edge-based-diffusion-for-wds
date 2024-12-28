@@ -29,7 +29,7 @@ class SimplexData(GraphData):
                  pos: OptTensor = None,
                  lower_laplacian_weight: OptTensor = None,
                  lower_laplacian_index: OptTensor = None,
-1                 lower_boundary_weight: OptTensor = None,
+                 lower_boundary_weight: OptTensor = None,
                  lower_boundary_index: OptTensor = None,
 
                  **kwargs):
@@ -234,6 +234,7 @@ def get_lower_boundary_and_laplacian(data: SimplexData, normalized=True, remove_
     # B1 = B1.coalesce()
 
     L = get_L_first_option(B1, normalized)
+
     if release_ends_of_virtual_edges:
         virtual_edges = data.edge_attr[:, -1] == 1
         L = (L - sparse_eye(L.shape[0],
@@ -287,5 +288,4 @@ def get_L_torch_sparse(boundary_index, boundary_weight, data, B1=None):
     L = torch_sparse.spspmm(L_indices, L_values, boundary_index, boundary_weight, data.num_edges, data.num_nodes,
                             data.num_edges)
     return L
-
 

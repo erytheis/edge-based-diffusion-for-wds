@@ -353,8 +353,13 @@ def read_wds_data(folder,
             edge_slices[i + 1] = edge_slices[i] + (1 - np.isnan(row).all(axis=0)).sum()
         slices['edge_index'] = torch.tensor(edge_slices, dtype=torch.long)
         # edge_properties = edge_properties[~drop_edges] if drop_edges is not None else edge_properties
-
     edge_index = torch.tensor(edge_index).to(dtype=torch.long).squeeze()
+
+    # add zeros to edge_attr for initial flowrates in case the true values are not provided
+    if edge_signals is None:
+        slices['edge_attr'] = slices['edge_index'].clone()
+        edge_signals = torch.zeros(edge_index.shape[1])
+        edge_signal_names = ['flowrate']
 
     # combine node attributes
     x = cat([node_signals, node_properties])
@@ -367,49 +372,9 @@ def read_wds_data(folder,
     slices['edge_attr'] = slices['edge_index']
     edge_attr_names = edge_signal_names + edge_property_names
 
-    # get_hazen_williams  headloss  #TODO place it somewhere else
-    length = edge_attributes[:, edge_attr_names.index('length')]
-    roughness = edge_attributes[:, edge_attr_names.index('roughness')]
-    diameter = edge_attributes[:, edge_attr_names.index('diameter')]
-    loss_coefficient = get_hydraulic_resistance(length, diameter, roughness)
-
-    # run tests to make sure flowrates and pressures are consistent with H-W equations
-    if 'flowrate' in edge_attr_names:
-        flowrate_ = edge_attributes[:, edge_attr_names.index('flowrate')]
-        flowrate_scaled = torch.sign(flowrate_) * (flowrate_.abs() ** 1.852) * loss_coefficient
-        if 'flowrate_scaled' not in skip_features:
-
-            edge_attributes = torch.cat([edge_attributes, flowrate_scaled.unsqueeze(-1)], dim=1)
-            edge_attr_names = edge_attr_names + ['flowrate_scaled']
-
-        # Run tests
-        for i in range(len(slices['y']) - 1):
-            # Headloss test
-            heads = node_labels[slices['y'][i]:slices['y'][i + 1]]
-            from_nodes = edge_index[0, slices['edge_index'][i]:slices['edge_index'][i + 1]]
-            to_nodes = edge_index[1, slices['edge_index'][i]:slices['edge_index'][i + 1]]
-            hl = heads[to_nodes] - heads[from_nodes]
-            fl = flowrate_scaled[slices['edge_attr'][i]:slices['edge_attr'][i + 1]]
-            # fl_ = flowrate_[slices['edge_attr'][i]:slices['edge_attr'][i + 1]]
-            err = np.abs(hl - fl) if negative_heads else np.abs(hl + fl)
-
-            # catch large discrepancies between headloss from heads and from flowrates
-            relative_err = (err / (np.abs(hl) + 1e-2)) > 1e-2
-            abs_err = err > 1e-2
-            hl_err = np.abs(hl) > 1e-3
-            discrepancy = torch.all(torch.stack([abs_err, relative_err, hl_err]), dim=0)
-
-            if torch.any(discrepancy):
-                print('Discrepancy found in graph: {}'.format(i))
-                print('Headloss: {}'.format(hl[discrepancy]))
-                print('Flowrate: {}'.format(fl[discrepancy]))
-                print('Error: {}'.format(err[discrepancy]))
-
-
-
     if name is not None:
-        slices['wds_names'] = torch.arange(len(slices['y']), dtype=torch.long)
-        name = [name] * (len(slices['y']) - 1)
+        slices['wds_names'] = torch.arange(len(slices['x']), dtype=torch.long)
+        name = [name] * (len(slices['x']) - 1)
 
     # construct labels
     y, y_names = None, None

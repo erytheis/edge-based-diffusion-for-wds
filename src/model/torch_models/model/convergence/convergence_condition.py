@@ -3,6 +3,7 @@ import operator
 from abc import ABC, abstractmethod
 
 import torch
+from line_profiler_pycharm import profile
 
 from src.utils.torch.torch_utils import sparse_agg
 
@@ -80,6 +81,7 @@ class ConservationBaseCondition(BaseCondition):
     def get_virtual(self, **kwargs):
         pass
 
+    @profile
     def evaluate(self, **kwargs):
         batch = kwargs.get("batch")
         x = self.get_x(**kwargs)
@@ -116,7 +118,7 @@ class EnergyConservationThreshold(ConservationBaseCondition):
     """
     Checks conservation on the upper Laplacian.
     """
-
+    @profile
     def get_index_and_weight(self, batch):
         return batch.upper_boundary_index.flip(0), batch.upper_boundary_weight
 
@@ -130,6 +132,7 @@ class MassConservationThreshold(ConservationBaseCondition):
     Checks conservation on the lower Laplacian.
     """
 
+    @profile
     def get_index_and_weight(self, batch):
         return batch.lower_boundary_index, batch.lower_boundary_weight
 

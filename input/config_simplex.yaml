@@ -10,13 +10,13 @@ dataset:
       type: HazenWilliamsWeights
   subsets:
     - args:
-        root: saved/simulations/wntr/l-town/1_l-town_eps
+        root: saved/simulations/wntr/l-town/1_l-town_no_y
       type: WDSGNNDataset
   transforms:
-    - args:
+    - type: OrderEdges
+      args:
         columns:
           - flowrate
-      type: OrderEdges
     - args:
         extend_dimensions: true
         fully_connected: false
@@ -33,7 +33,7 @@ device: cuda:0
 inspect: false
 loader:
   args:
-    batch_size: 1
+    batch_size: 10
     num_workers: 0
     shuffle: false
     test_split: 0.0
