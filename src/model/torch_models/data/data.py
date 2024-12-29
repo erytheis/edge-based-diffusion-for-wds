@@ -4,7 +4,7 @@ from typing import Any, List, Union, Optional, Tuple, Mapping
 import numpy as np
 import torch
 import torch_geometric
-from line_profiler_pycharm import profile
+
 from torch import Tensor
 from torch_geometric.data import Batch
 from torch_geometric.data.collate import _collate, repeat_interleave, cumsum
@@ -151,7 +151,7 @@ class Data(torch_geometric.data.Data):
     def wds_names(self) -> Any:
         return self['wds_names'] if 'wds_names' in self._store else None
 
-@profile
+#@profile
 def collate(
         cls,
         data_list: List[BaseData],

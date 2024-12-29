@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from line_profiler_pycharm import profile
+
 from torch import nn
 
 from src.model.torch_models.model.convergence.convergence_checker import (
@@ -22,7 +22,7 @@ class Diffusion(nn.Module):
 
         self.convergence_checker = convergence_checker
 
-    @profile
+    #@profile
     def forward(self, batch, tau_down, tau_up, momentum_down, momentum_up, k=3):
 
         device = batch.edge_attr.device

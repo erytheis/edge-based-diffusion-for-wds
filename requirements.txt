@@ -1,0 +1,5 @@
+scikit_learn==1.6.0
+tqdm
+pyyaml
+pandas
+wntr

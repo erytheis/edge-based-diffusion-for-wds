@@ -8,7 +8,7 @@ class SimplicialFeaturePropagation(GCNConv):
         super().__init__(in_channels=1, out_channels=1, *args, **kwargs, normalize=False)
         self.lin = None
 
-    @profile
+    #@profile
     def forward(self, x: Tensor, edge_index: Adj,
                 edge_weight: OptTensor = None) -> Tensor:
         # propagate_type: (x: Tensor, edge_weight: OptTensor)

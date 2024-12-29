@@ -98,15 +98,11 @@ class ConfigParser(BaseModule):
         if args.device is not None:
             os.environ["CUDA_VISIBLE_DEVICES"] = args.device
 
-        if args.resume is not None:
-            resume = Path(args.resume)
-            resume_cfg_fname = resume.parent / 'config.yaml'
-        else:
-            msg_no_cfg = "Configuration file need to be specified. Add '-c config.yaml', for example."
-            assert args.config is not None, msg_no_cfg
-            resume = None
-            cfg_path = cls.handle_local_inputs(args.config)
-            resume_cfg_fname = Path(cfg_path)
+        msg_no_cfg = "Configuration file need to be specified. Add '-c config.yaml', for example."
+        assert args.config is not None, msg_no_cfg
+        resume = None
+        cfg_path = cls.handle_local_inputs(args.config)
+        resume_cfg_fname = Path(cfg_path)
 
         try:
             config = read_yaml(get_abs_path(resume_cfg_fname))
@@ -123,11 +119,6 @@ class ConfigParser(BaseModule):
                 config.update(read_yaml(cls.handle_local_inputs(args.config)))
             config['resume'] = str(resume)
 
-        if args.seed is not None:
-            SEED = args.seed
-            print('seed set to', SEED)
-            seed_everything(SEED)
-            config.update({'seed': SEED})
 
         if args.debug:
             DEBUG = True

@@ -10,7 +10,6 @@ from typing import List, Iterable
 import numpy as np
 import scipy.sparse as sp
 import yaml
-from sklearn.preprocessing import OneHotEncoder
 from torch_geometric.utils import to_scipy_sparse_matrix
 
 PROJECT_ROOT: bytes = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
@@ -72,10 +71,6 @@ def write_yaml(data, path):
         yaml.dump(data, outfile, default_flow_style=False)
 
 
-def init_and_fit_ohe(data_list):
-    enc = OneHotEncoder()
-    return enc.fit(np.array(data_list).reshape(-1, 1))
-
 
 def all_equal(iterable):
     g = groupby(iterable)
@@ -131,25 +126,7 @@ class Iterator:
 
 
 from tqdm.auto import tqdm
-from joblib import Parallel
 
-
-class ProgressParallel(Parallel):
-    """A helper class for adding tqdm progressbar to the joblib library."""
-    def __init__(self, use_tqdm=True, total=None, *args, **kwargs):
-        self._use_tqdm = use_tqdm
-        self._total = total
-        super().__init__(*args, **kwargs)
-
-    def __call__(self, *args, **kwargs):
-        with tqdm(disable=not self._use_tqdm, total=self._total) as self._pbar:
-            return Parallel.__call__(self, *args, **kwargs)
-
-    def print_progress(self):
-        if self._total is None:
-            self._pbar.total = self.n_dispatched_tasks
-        self._pbar.n = self.n_completed_tasks
-        self._pbar.refresh()
 
 
 def flatten_list(list_of_lists):

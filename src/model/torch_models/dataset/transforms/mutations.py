@@ -1,5 +1,5 @@
 import numpy as np
-from line_profiler_pycharm import profile
+
 
 import src.model
 from src.model.torch_models.data.complex import get_upper_boundary_and_laplacian, ComplexData, \
@@ -44,7 +44,7 @@ class ToSimplexData(BaseTransform):
         self.iterative_smoothing_coefficient = iterative_smoothing_coefficient
         super().__init__()
 
-    @profile
+    #@profile
     def forward(self, data, *args, **kwargs):
         B1_i, B1_w, L_down_i, L_down_w = get_lower_boundary_and_laplacian(data,
                                                               self.normalized,
@@ -97,7 +97,7 @@ class ToComplexData(BaseTransform):
         self._cache = None
         super().__init__()
 
-    @profile
+    #@profile
     def forward(self, data, *args, **kwargs):
 
         if self._cache is None:

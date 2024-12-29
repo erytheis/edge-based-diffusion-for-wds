@@ -1,0 +1,43 @@
+dataset:
+  args:
+    cache_transformed: true
+    reload_data: true
+  pre_transforms:
+    - args:
+        remove_original: true
+      type: HazenWilliamsWeights
+  subsets:
+    - args:
+        root: saved/simulations/wntr/kl/2000_kl_
+      type: WDSGNNDataset
+  transforms:
+    - type: OrderEdges
+      args:
+        columns:
+          - flowrate
+    - args:
+        extend_dimensions: true
+        fully_connected: false
+      type: VirtualSink
+    - args:
+        extend_dimensions: true
+        fully_connected: false
+      type: VirtualReservoirConnections
+    - type: ToComplexData
+    - args: { }
+      type: MaskJunctionValues
+debug: false
+device: cuda:0
+inspect: false
+loader:
+  args:
+    batch_size: 10
+    num_workers: 0
+    shuffle: false
+    test_split: 0.0
+    validation_split: 0.0
+  type: BaseGNNDataLoader
+n_gpu: 1
+name: SimplicialNet
+seed: 90342
+

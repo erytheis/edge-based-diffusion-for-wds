@@ -2,7 +2,7 @@
 
 
 # data
-saved/simulations/*
+input/simulations/*
 
 #Pytorch
 */*.pyc

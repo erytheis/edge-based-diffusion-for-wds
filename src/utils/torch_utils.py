@@ -1,24 +1,17 @@
 import json
-from typing import Optional, List, Iterable
-# from prettytable import PrettyTable
+from collections import OrderedDict
+from itertools import repeat
+from pathlib import Path
+from typing import Optional
+
 import numpy as np
 import scipy.sparse as sp
-
 import torch
-import pandas as pd
-from pathlib import Path
-from itertools import repeat
-from collections import OrderedDict
-
-from line_profiler_pycharm import profile
-from prettytable import PrettyTable
 from torch import Tensor
 from torch_geometric.utils import add_remaining_self_loops
 from torch_geometric.utils.num_nodes import maybe_num_nodes
-from torch_scatter import scatter_add
 from torch_scatter import scatter, segment_csr, gather_csr
-
-from src.utils.utils import Iterator
+from torch_scatter import scatter_add
 
 
 def ensure_dir(dirname):

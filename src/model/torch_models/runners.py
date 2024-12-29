@@ -142,14 +142,12 @@ def load_args(config_name=None, resume=None, device=None, SEED=90342):
                       help='config file path (default: None)')
     args.add_argument('-d', '--device', default=device, type=str,
                       help='indices of GPUs to enable (default: all)')
-    args.add_argument('-s', '--seed', default=SEED, type=int)
-    args.add_argument('-r', '--resume', default=resume, type=str)
     args.add_argument('--debug', default=None, type=bool)
 
     # boolean vlaues with both options
     parsed_bool = lambda x: bool(distutils.util.strtobool(x))
     args.add_argument('--re', default=None, type=parsed_bool)
-    args.add_argument('--or', default=None, type=parsed_bool)
+
 
     return args
 

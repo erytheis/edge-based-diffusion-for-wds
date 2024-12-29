@@ -5,7 +5,7 @@ import networkx as nx
 import numpy as np
 import scipy as sp
 import torch
-from line_profiler_pycharm import profile
+
 from torch_geometric.typing import OptTensor
 
 from src.model.torch_models.data.simplex import SimplexData
@@ -69,7 +69,7 @@ class ComplexData(SimplexData):
             else None
         )
 
-    @profile
+    #@profile
     def __inc__(self, key: str, value: Any, *args, **kwargs) -> Any:
         if "batch" in key:
             return int(value.max()) + 1
@@ -112,7 +112,7 @@ class ComplexData(SimplexData):
         return int(self.upper_boundary_index[1].max())
 
 
-@profile
+#@profile
 def get_upper_boundary_and_laplacian(data, normalized=False):
     """
     Compute the upper Laplacian (L1_up) for a given ComplexData graph.

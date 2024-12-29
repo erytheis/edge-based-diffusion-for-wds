@@ -1,13 +1,10 @@
-import time
 from typing import Any, Tuple
 from typing import List, Optional
 
 import numpy as np
-import scipy
 import torch
 import torch_sparse
-from hodgelaplacians import HodgeLaplacians
-from line_profiler_pycharm import profile
+
 from torch_geometric.data import Batch
 from torch_geometric.data.data import BaseData
 from torch_geometric.typing import OptTensor
@@ -66,7 +63,7 @@ class SimplexData(GraphData):
     def node_y(self):
         return self['node_y']
 
-    @profile
+    #@profile
     def __inc__(self, key: str, value: Any, *args, **kwargs) -> Any:
         if 'batch' in key:
             return int(value.max()) + 1
@@ -223,7 +220,7 @@ def get_lower_boundary(data: SimplexData, device='cpu', weight_idx=None):
     return boundary_index, boundary_weight
 
 
-@profile
+#@profile
 def get_lower_boundary_and_laplacian(data: SimplexData, normalized=True, remove_self_loops=False,
                                      device='cpu',
                                      release_ends_of_virtual_edges=False,
@@ -251,7 +248,7 @@ def get_lower_boundary_and_laplacian(data: SimplexData, normalized=True, remove_
     return boundary_index, boundary_weight, lower_laplacian_index, lower_laplacian_weight
 
 
-@profile
+#@profile
 def get_L_first_option(B1, normalized=True, ):
     B1 = B1.to_dense() if hasattr(B1, 'to_dense') else B1
 
@@ -266,7 +263,7 @@ def get_L_first_option(B1, normalized=True, ):
     return L
 
 
-@profile
+#@profile
 def get_L_torch_sparse(boundary_index, boundary_weight, data, B1=None):
     if B1 is None:
         B1 = torch.sparse_coo_tensor(boundary_index, boundary_weight, size=(data.num_nodes, data.num_edges))

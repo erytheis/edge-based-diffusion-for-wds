@@ -7,7 +7,7 @@ from os.path import join
 import numpy as np
 import pandas as pd
 import torch
-from line_profiler_pycharm import profile
+
 from torch import Tensor
 from torch_geometric.data import InMemoryDataset, Data
 from torch_geometric.data.dataset import IndexType
@@ -27,28 +27,13 @@ class WDSGNNDataset(InMemoryDataset, BaseGNNDataset):
                  transform: Optional[Callable] = None,
                  pre_transform: Optional[Callable] = None,
                  reload_data: bool = False,
-                 skip_features=None,
                  # data loading params
                  normalize_heads: bool = True,
                  negative_heads: bool = True,
                  name=None,
-                 positional_features=None,
-                 scaling_temperature: Optional[float] = None,
-                 cache_transformed: Optional[bool] = False,
-                 **kwargs):
-        if skip_features is None:
-            skip_features = []
-        skip_features = ['elevation', 'Open', 'Closed', 'Pipe',
-                         'Pump',
-                         # 'flowrate',
-                         'HydraulicCosts',
-                         'CurrentFlowBetweennessCentrality',
-                         'InformationCentrality',
-                         'InvWeightCurrentFlowBetweennessCentrality'] + skip_features
-        self.skip_features = skip_features
+                 cache_transformed: Optional[bool] = False):
+        self.skip_features = ['elevation', 'Open', 'Closed', 'Pipe','Pump']
         self.name = name
-        self.scaling_temperature = scaling_temperature
-        self.positional_features = positional_features if positional_features is not None else []
         self.reload_data = reload_data
         self.cache_transformed = cache_transformed
 
@@ -89,7 +74,7 @@ class WDSGNNDataset(InMemoryDataset, BaseGNNDataset):
         if hasattr(self.transform, 'infer_parameters'):
             self.transform.infer_parameters(self.data)
 
-    @profile
+    #@profile
     def __getitem__(
             self,
             idx: Union[int, np.integer, IndexType],
@@ -139,7 +124,7 @@ class WDSGNNDataset(InMemoryDataset, BaseGNNDataset):
     def processed_file_names(self) -> str:
         return 'data.pt'
 
-    @profile
+    #@profile
     def get(self, idx: int, *args, **kwargs):
         if not hasattr(self, '_transformed') or self._transformed is None:
             self._transformed = self.len() * [False]
@@ -270,10 +255,6 @@ def read_wds_data(folder,
                                                                                          node_signal_indicators,
                                                                                          skip_features,
                                                                                          imputer=True)
-        if 'HydraulicCosts' in node_signal_names:
-            hc_idx = list(node_signal_names).index('HydraulicCosts')
-            node_signals[:, hc_idx] = torch.log(node_signals[:, hc_idx])
-            node_signals[:, hc_idx][node_signals[:, hc_idx] == -np.inf] = -10
         slices['x'] = node_slices
 
     if 'edge_signals' in names:

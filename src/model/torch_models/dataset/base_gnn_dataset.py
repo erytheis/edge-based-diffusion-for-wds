@@ -155,7 +155,6 @@ def process_signals(signals_df, indicators_df, skip_features=[], imputer=None, d
 
     signal_names = indicators_df['name'].unique()
 
-    number_of_elements = signals_df.shape[1]
     number_of_graphs = int(indicators_df['idx'].shape[0] / len(signal_names))
 
     # slices = get_slices(indicators_df['idx'], number_of_elements, signals_df) / len(signal_names)

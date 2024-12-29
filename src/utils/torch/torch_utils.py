@@ -12,8 +12,6 @@ from itertools import repeat
 from collections import OrderedDict
 
 import torch_geometric
-from line_profiler_pycharm import profile
-from prettytable import PrettyTable
 from torch import Tensor
 from torch_geometric.utils import add_remaining_self_loops
 from torch_geometric.utils.num_nodes import maybe_num_nodes
@@ -66,18 +64,6 @@ def prepare_device(n_gpu_use, device_name='cuda:0'):
 
 
 
-def count_parameters(model, print_architecture=False):
-    table = PrettyTable(["Modules", "Parameters"])
-    total_params = 0
-    for name, parameter in model.named_parameters():
-        if not parameter.requires_grad: continue
-        params = parameter.numel()
-        table.add_row([name, params])
-        total_params += params
-    if print_architecture:
-        print(table)
-    print(f"Total Trainable Params: {total_params}")
-    return total_params
 
 
 
@@ -97,51 +83,6 @@ def get_symmetrically_normalized_adjacency(edge_index, n_nodes):
 
     return edge_index, DAD
 
-
-"""
-Diffusion models utils
-"""
-
-
-def get_rw_adj(edge_index, edge_weight=None, norm_dim=1, fill_value=0., num_nodes=None, dtype=None):
-    num_nodes = maybe_num_nodes(edge_index, num_nodes)
-
-    if edge_weight is None:
-        edge_weight = torch.ones((edge_index.size(1),), dtype=dtype,
-                                 device=edge_index.device)
-
-    if not fill_value == 0:
-        edge_index, tmp_edge_weight = add_remaining_self_loops(
-            edge_index, edge_weight, fill_value, num_nodes)
-        assert tmp_edge_weight is not None
-        edge_weight = tmp_edge_weight
-
-    row, col = edge_index[0], edge_index[1]
-    indices = row if norm_dim == 0 else col
-    deg = scatter_add(edge_weight, indices, dim=0, dim_size=num_nodes)
-    deg_inv_sqrt = deg.pow_(-1)
-    edge_weight = deg_inv_sqrt[indices] * edge_weight if norm_dim == 0 else edge_weight * deg_inv_sqrt[indices]
-    return edge_index, edge_weight
-
-
-def gcn_norm_fill_val(edge_index, edge_weight=None, fill_value=0., num_nodes=None, dtype=None):
-    num_nodes = maybe_num_nodes(edge_index, num_nodes)
-
-    if edge_weight is None:
-        edge_weight = torch.ones((edge_index.size(1),), dtype=dtype,
-                                 device=edge_index.device)
-
-    if not int(fill_value) == 0:
-        edge_index, tmp_edge_weight = add_remaining_self_loops(
-            edge_index, edge_weight, fill_value, num_nodes)
-        assert tmp_edge_weight is not None
-        edge_weight = tmp_edge_weight
-
-    row, col = edge_index[0], edge_index[1]
-    deg = scatter_add(edge_weight, col, dim=0, dim_size=num_nodes)
-    deg_inv_sqrt = deg.pow_(-0.5)
-    deg_inv_sqrt.masked_fill_(deg_inv_sqrt == float('inf'), 0)
-    return edge_index, deg_inv_sqrt[row] * edge_weight * deg_inv_sqrt[col]
 
 
 # Counter of forward and backward passes.
@@ -305,11 +246,11 @@ def to_undirected(
     else:
         return edge_index, edge_attr
 
-@profile
+#@profile
 def sparse_agg(x, boundary_index, boundary_weight, device=None):
     #TODO use existing torch.nn.module
     device = x.device
-    dim_size = boundary_index[0].max() + 1
+    dim_size = (boundary_index[0].max() + 1).item()
     out = torch.zeros((dim_size, 1), device=device)
     x_ = x[boundary_index[1]] * boundary_weight.unsqueeze(-1)
     out =  scatter(x_, boundary_index[0], out=out, dim_size=dim_size, dim=0)

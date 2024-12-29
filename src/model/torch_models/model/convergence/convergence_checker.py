@@ -1,6 +1,6 @@
 import operator
 
-from line_profiler_pycharm import profile
+
 
 from src.model.torch_models.model.convergence.convergence_condition import \
     EnergyConservationThreshold, MassConservationThreshold, CompositeCondition
@@ -62,7 +62,7 @@ class StopPointsConvergenceChecker(ConvergenceChecker):
         self.current_iteration += 1
         return iteration
 
-    @profile
+    #@profile
     def update(self, i,  **kwargs):
         if i in self.stop_points:
 

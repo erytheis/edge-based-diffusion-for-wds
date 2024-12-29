@@ -22,6 +22,7 @@ if __name__ == "__main__":
     # Configure logging
     logger = logging.getLogger("my_convergence_logger")
     logger.setLevel(logging.DEBUG)
+
     # Add a console handler with a simple format
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
@@ -30,7 +31,7 @@ if __name__ == "__main__":
     logger.addHandler(ch)
 
     reservoirs = torch.tensor(0)
-    config_name = join(PROJECT_ROOT, "input", "config_simplex.yaml")
+    config_name = join(PROJECT_ROOT, "input", "config.yaml")
 
     args = load_args(
         config_name,
@@ -43,9 +44,10 @@ if __name__ == "__main__":
     data_loader = BaseGNNDataLoader(dataset, 10000, device=device)
 
     normalized = False
-    # reload = 'out/cellular_reconstruction_speed_optimal_experiment.csv'
     down_iterations = 3
     get_best = True
+
+    print(dataset)
 
     stop_points = np.linspace(100, 1000, 100).astype(int)
     convergence_checker = StopPointsConvergenceChecker(stop_points)
@@ -56,6 +58,9 @@ if __name__ == "__main__":
     #     fp = torch_geometric.compile(fp)
 
     torch.no_grad()
+
+    # debug
+    st_time = time.time()
 
     for batch in data_loader:
         path_to_logs = join(
@@ -89,3 +94,5 @@ if __name__ == "__main__":
             print("f:", r2_score(f, batch.edge_y.unsqueeze(-1)))
             print("h:", r2_score(h, h_true.unsqueeze(-1)))
 
+        # debug
+    end_time = time.time()
