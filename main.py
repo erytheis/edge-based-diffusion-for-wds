@@ -85,13 +85,15 @@ if __name__ == "__main__":
         st_iteration = time.time()
         f, h = fp(batch, tau_down, tau_up, momentum_down, momentum_up)
         end_iteration = time.time()
-        print("Time:", end_iteration - st_iteration)
 
-        h_true = (
-            batch.edge_y.abs() ** 1.852 * batch.edge_y.sign() * batch.edge_attr[:, 1]
-        )
-        print("f:", r2_score(f, batch.edge_y.unsqueeze(-1)))
-        print("h:", r2_score(h, h_true.unsqueeze(-1)))
+        # comparison with the true values (if exist)
+        if batch.edge_y is not None:
+            h_true = (
+                batch.edge_y.abs() ** 1.852 * batch.edge_y.sign() * batch.edge_attr[:, 1]
+            )
+
+            print("f:", r2_score(f, batch.edge_y.unsqueeze(-1)))
+            print("h:", r2_score(h, h_true.unsqueeze(-1)))
 
         # debug
     end_time = time.time()

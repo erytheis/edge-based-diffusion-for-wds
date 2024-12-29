@@ -34,4 +34,7 @@ sweep/
 # PyCharm files
 .idea
 
+# Profiling
+fix_pclprof.py
+*.pclprof
 

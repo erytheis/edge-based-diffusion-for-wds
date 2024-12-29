@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 import torch
+from line_profiler_pycharm import profile
 from torch_geometric.data import Data
 
 from src.model.torch_models.dataset.transforms.base import BaseTransform
@@ -18,6 +19,7 @@ class FlipEdges(BaseTransform):
         self.columns_idx = {}
         super().__init__()
 
+    @profile
     def forward(self, data: Data, to_flip, inplace=True) -> Data:
         # flip edges where demand > 0
         edge_index = data.edge_index
