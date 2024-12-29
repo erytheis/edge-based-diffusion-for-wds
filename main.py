@@ -47,9 +47,6 @@ if __name__ == "__main__":
     down_iterations = 3
     get_best = True
 
-    # memory_limits = list(np.logspace(-1, 1, 10)*2)
-    print(dataset)
-
     stop_points = np.linspace(100, 1000, 100).astype(int)
     convergence_checker = StopPointsConvergenceChecker(stop_points)
 
@@ -59,9 +56,6 @@ if __name__ == "__main__":
     #     fp = torch_geometric.compile(fp)
 
     torch.no_grad()
-
-    # debug
-    st_time = time.time()
 
     for batch in data_loader:
         path_to_logs = join(
@@ -95,6 +89,3 @@ if __name__ == "__main__":
             print("f:", r2_score(f, batch.edge_y.unsqueeze(-1)))
             print("h:", r2_score(h, h_true.unsqueeze(-1)))
 
-        # debug
-    end_time = time.time()
-    print("Time:", end_time - st_time)

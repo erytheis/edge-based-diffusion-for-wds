@@ -5,7 +5,6 @@
 
 ## Roadmap
 - [x] Diffusion Model
-- [ ] Pressure reconstruction
-- [ ] Config files
-- [ ] Generated Data
 - [ ] Requirements
+- [ ] Pressure reconstruction
+- [ ] Generated Data
