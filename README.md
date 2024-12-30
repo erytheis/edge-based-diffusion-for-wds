@@ -2,6 +2,8 @@
 
 This repository contains code and resources associated with the paper Accelerating Steady State Analysis of Water Distribution Systems Using GPU-Enhanced Edge-Based Diffusion. The main objective is to demonstrate how an edge-based diffusion mechanism can be used to achieve simultaneous hydraulic simulations (_coarse-grained_ parallelization) by leveraging CUDA.
 
+![main_scheme.png](img/main_scheme.png)
+
 
 ## Roadmap
 - [x] Diffusion Model
@@ -10,6 +12,7 @@ This repository contains code and resources associated with the paper Accelerati
 - [ ] CLI option
 - [ ] Pressure reconstruction
 - [ ] Generated Data
+- [ ] Optimization algorithm
 
 ## Installation
 
