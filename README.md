@@ -6,6 +6,8 @@ This repository contains code and resources associated with the paper Accelerati
 ## Roadmap
 - [x] Diffusion Model
 - [x] Requirements
+- [ ] Virtual Reservoir Connectors
+- [ ] CLI option
 - [ ] Pressure reconstruction
 - [ ] Generated Data
 
